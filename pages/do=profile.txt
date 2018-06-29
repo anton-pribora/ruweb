@@ -1,0 +1,448 @@
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<!-- border-style:solid; for Mozilla ? -->
+<style>
+a   {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #0000cc; text-decoration: underline }
+a.service_url   {color: inherit; text-decoration: none; border-bottom: 1px dashed}
+th  {font-family: verdana, arial, helvetica, sans-serif; font-weight: bold; color: #ffffff; background-color:#3333A2; padding: 2px 2px}
+th a    {font-weight: bold; color: #ffffff;}
+option  {border-color:#000000; border-width:1; font-size: 11px}
+select  {border-color:#000000; border-width:1; font-size: 11px;background-color:white}
+input, button {border-color:#000000; border-width:1; font-size: 11px;background-color:white}
+input[type=radio] {height: 11px;margin:0px}
+input.box   {border-style:solid}
+textarea    {border-color:#000000; border-width:1; font-size: 12px; border-style:solid; background-color:white}
+body    {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #000000 }
+h5  {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px}
+h5 span {font-weight: normal}
+table,td,tr {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; border: 0}
+td  {vertical-align:top; padding: 2px 4px}
+td.toggle   {padding: 0px 0px}
+#table.details td {padding: 2px 5px}
+tr  {background-color:white};
+table   {background-color:#3333A2}
+hr  {height:1}
+form    {margin:0}
+.ex {color:gray; font-style:italic}
+.disabled, .disabled font {text-decoration:line-through}
+.zero_use {color:gray}
+.c  {text-align: center}
+.r  {text-align: right}
+.l  {text-align: left}
+small   {font-size: 10px}
+table[border~="1"] tr:nth-child(even) {background-color: #eee}
+table[border~="1"] tr:nth-child(odd) {background-color: white}
+table[border~="1"] tr:hover {background-color: #ddd}
+table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
+#nodes-table td {border: 0px; border-bottom: 1px solid #999; border-collapse: collapse; padding: 2px 2px;}
+#nodes-table tr:hover {background-color: #ddd}
+#nodes-table th {background: #fbfbfb; color: #000; border-bottom: 2px solid #999;}
+</style></head>
+<body><basefont face="verdana, arial, helvetica, sans-serif">
+<script>
+function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
+function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
+function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
+    evt = (evt) ? evt : ((event) ? event : null);
+    if (evt) {
+        var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
+            ((evt.keyCode) ? evt.keyCode : evt.which);
+//alert(charCode);
+        if (charCode > 13 && !x^(!(set&1 && isDigit(charCode)) && !(set&2 && isLat(charCode)) && !(set&4 && isRus(charCode)) && exc.indexOf(String.fromCharCode(charCode))==-1)) {
+//      if (evt.returnValue) {
+//          evt.returnValue = false;
+//      } else if (evt.preventDefault) {
+            if (evt.preventDefault) { evt.preventDefault(); } else { evt.returnValue = false; return false; }
+        }
+    }
+}
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
+function Lat(text){
+    var result="";
+    for(i=0;i<text.length;i++) {
+        if(transl[text[i]]!=undefined) { result+=transl[text[i]]; }
+        else { result+=text[i]; }
+    }
+    return result;
+}
+function fieldCheck(field,regexp){
+    if (!field || !regexp || !field.value || !field.style) return;
+    var re = new RegExp(regexp);
+    if (re && !re.test(field.value)) {
+        field.style.borderColor="red";
+        field.style.color="red";
+    } else {
+        field.style.borderColor="black";
+        field.style.color="black";
+    }
+}
+function Limit(field,max) { if (field.value.length>max) field.value=field.value.substr(0,max-1); }
+function maxLen(evt,field,max) {
+    evt = (evt) ? evt : ((event) ? event : null);
+    if (evt && (field.value.length>=max)) {
+        Limit(field,max);
+            if (evt.preventDefault) { evt.preventDefault(); } 
+        else { evt.returnValue = false; return false; }
+    }
+}
+var HelpWnd;
+function Help(id){
+    HlpWnd=window.open("",null,"width=400,height=300,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes");
+    HlpWnd.document.write("<title>please wait...</title>");
+    HlpWnd.focus();
+    HlpWnd.location="help.php?show="+id;
+}
+var Plan;
+function ChoosePlan(field,def){
+    if (!def && field) def=field.value;
+    Plan=field;
+    PlanWnd=window.open("",null,"width=350,height=450,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=no");
+    PlanWnd.document.write("<title>please wait...</title>");
+    PlanWnd.focus();
+    PlanWnd.location="plan.php?str="+def;
+}
+function Disable(field){
+    if (field && !field.disabled) {
+        field.disabled=true;
+        field.style.borderColor="silver";
+    }
+};
+function Enable(field){
+    if (field && field.disabled) {
+        field.disabled=false;
+        field.style.borderColor="black";
+    }
+};
+function Decode(code,key){
+    var str="";
+    for (var i=0;i<code.length;i++) {
+        str=str+String.fromCharCode(code.charCodeAt(i)-key.charCodeAt(i)+48);
+    }
+    return str;
+}
+function mhref(code,key,link){ link.href="ma"+"ilt"+"o:"+Decode(code,key); }
+function MTo(code,key,name){
+    var addr=Decode(code,key);
+    if (name=="") name=addr;
+    document.write("<a href=m"+"ai"+"lto"+":"+addr+">"+name+"</a>");
+}
+function goURL(page,noselect){
+    if (noselect==1) {
+        if (document.getSelection) selection = document.getSelection();
+        else selection = document.selection.createRange().text;
+        if (selection!="") return false;
+    }
+    document.location.href=page;
+}
+//function toggle_visibility(id){
+//  var e;
+//  if ((e=document.getElementById(id)) && e.style) 
+//      if(e.style.display == "none") e.style.display = "table-row";
+//      else e.style.display = "none";
+//} 
+</script>
+<style> td.centr {vertical-align:middle; padding: 4px 4px}</style>
+
+<table border=0 cellspacing=5>
+
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
+
+
+
+</tr>
+
+<tr>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
+ <td align=center>&nbsp;</td>
+
+</tr>
+
+<tr>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
+ <td align=center>&nbsp;</td>
+
+</tr>
+
+
+</table><hr>
+<h5>Персональные данные</h5>
+<form action='?do=editprofile' method=post>
+<input name=userid type=hidden size=30 maxlength=30 value=''>
+<table cellspacing=0 border=0 cellpadding=3>
+<tr><td>E-mail*</td><td><input name=email type=text value='' class=box size=44 onKeyPress="filter(event,4,'',0)"></td><td class=ex>user@domain.ru</td></tr>
+<tr><td>Пароль</td><td><input name=password type=password value='' class=box size=44></td><td></td></tr>
+<tr><td>Пароль (еще раз)</td><td><input name=confirm type=password value='' class=box size=44></td><td></td></tr><tr><td colspan=2><a href='?do=oauth'>Авторизация через внешние сервисы(OAuth)</a></td><td></td></tr><tr><td>Дополнительный E-mail<br>для финансовых уведомлений</td><td><input name=email_org type=text value='' class=box size=44></td><td class=ex>user@domain.ru</td></tr>
+<tr><td>Фамилия*</td><td><input name=lname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Сидоров</td></tr>
+<tr><td>Имя*</td><td><input name=fname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Иван</td></tr>
+<tr><td>Отчество</td><td><input name=sname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Петрович</td></tr>
+<tr><td>Полное имя (англ.)</td><td><input name=name type=text value='' class=box size=44 onKeyPress="filter(event,2,'- ',1)"></td><td class=ex>Ivan P Sidorov</td></tr>
+<tr><td>Страна</td><td colspan=2><select name=country class=box><option></option>
+<option value='' selected>Russia</option>
+<option value=''>Ukraine</option>
+<option value=''>Belarus</option>
+<option value=''>Afghanistan</option>
+<option value=''>Albania</option>
+<option value=''>Algeria</option>
+<option value=''>American Somoa</option>
+<option value=''>Andorra</option>
+<option value=''>Angola</option>
+<option value=''>Anguilla</option>
+<option value=''>Antartica</option>
+<option value=''>Antigua and Barbuda</option>
+<option value=''>Argentina</option>
+<option value=''>Armenia</option>
+<option value=''>Aruba</option>
+<option value=''>Australia</option>
+<option value=''>Austria</option>
+<option value=''>Azerbaijan</option>
+<option value=''>Bahamas</option>
+<option value=''>Bahrain</option>
+<option value=''>Bangladesh</option>
+<option value=''>Barbados</option>
+<option value=''>Belgium</option>
+<option value=''>Belize</option>
+<option value=''>Benin</option>
+<option value=''>Bermuda</option>
+<option value=''>Bhutan</option>
+<option value=''>Bolivia</option>
+<option value=''>Bosnia and Herzegovina</option>
+<option value=''>Botswana</option>
+<option value=''>Bouvet Islands</option>
+<option value=''>Brazil</option>
+<option value=''>British Indian Ocean Territory</option>
+<option value=''>Brunei</option>
+<option value=''>Bulgaria</option>
+<option value=''>Burkina Faso</option>
+<option value=''>Burundi</option>
+<option value=''>Cambodia</option>
+<option value=''>Cameroon</option>
+<option value=''>Canada</option>
+<option value=''>Cape Verde</option>
+<option value=''>Cayman Islands</option>
+<option value=''>Central African Republic</option>
+<option value=''>Chad</option>
+<option value=''>Chile</option>
+<option value=''>China</option>
+<option value=''>Christmas Islands</option>
+<option value=''>Cocos (Keeling) Islands</option>
+<option value=''>Colombia</option>
+<option value=''>Comoros</option>
+<option value=''>Congo</option>
+<option value=''>Congo, Democratic Republic of</option>
+<option value=''>Cook Island</option>
+<option value=''>Costa Rica</option>
+<option value=''>Cote Divoire</option>
+<option value=''>Croatia</option>
+<option value=''>Cyprus</option>
+<option value=''>Czech Republic</option>
+<option value=''>Denmark</option>
+<option value=''>Djibouti</option>
+<option value=''>Dominica</option>
+<option value=''>Dominican Republic</option>
+<option value=''>East Timor</option>
+<option value=''>Egypt</option>
+<option value=''>El Salvador</option>
+<option value=''>Equador</option>
+<option value=''>Equatorial Guinea</option>
+<option value=''>Eritrea</option>
+<option value=''>Estonia</option>
+<option value=''>Ethiopia</option>
+<option value=''>Falkland Islands</option>
+<option value=''>Faroe Islands</option>
+<option value=''>Federated States of Micronesia</option>
+<option value=''>Fiji</option>
+<option value=''>Finland</option>
+<option value=''>France</option>
+<option value=''>French Guiana</option>
+<option value=''>French Polynesia</option>
+<option value=''>French Southern Territories</option>
+<option value=''>Gabon</option>
+<option value=''>Gambia</option>
+<option value=''>Georgia</option>
+<option value=''>Germany</option>
+<option value=''>Ghana</option>
+<option value=''>Gibraltar</option>
+<option value=''>Greece</option>
+<option value=''>Greenland</option>
+<option value=''>Grenada</option>
+<option value=''>Guadeloupe</option>
+<option value=''>Guam</option>
+<option value=''>Guatemala</option>
+<option value=''>Guinea</option>
+<option value=''>Guinea-Bissau</option>
+<option value=''>Guyana</option>
+<option value=''>Haiti</option>
+<option value=''>Heard and Macdonald Islands</option>
+<option value=''>Honduras</option>
+<option value=''>Hong Kong</option>
+<option value=''>Hungary</option>
+<option value=''>Iceland</option>
+<option value=''>India</option>
+<option value=''>Indonesia</option>
+<option value=''>Iran</option>
+<option value=''>Ireland</option>
+<option value=''>Israel</option>
+<option value=''>Italy</option>
+<option value=''>Jamaica</option>
+<option value=''>Japan</option>
+<option value=''>Jordan</option>
+<option value=''>Kazakhstan</option>
+<option value=''>Kenya</option>
+<option value=''>Kiribati</option>
+<option value=''>Korea, North</option>
+<option value=''>Korea, South</option>
+<option value=''>Kuwait</option>
+<option value=''>Kyrgyzstan</option>
+<option value=''>Laos</option>
+<option value=''>Latvia</option>
+<option value=''>Lebanon</option>
+<option value=''>Lesotho</option>
+<option value=''>Liberia</option>
+<option value=''>Liechtenstein</option>
+<option value=''>Lithuania</option>
+<option value=''>Luxembourg</option>
+<option value=''>Macau</option>
+<option value=''>Macedonia (Former Yugoslav Republic of)</option>
+<option value=''>Madagascar</option>
+<option value=''>Malawi</option>
+<option value=''>Malaysia</option>
+<option value=''>Maldives</option>
+<option value=''>Mali</option>
+<option value=''>Malta</option>
+<option value=''>Marshall Islands</option>
+<option value=''>Martinique</option>
+<option value=''>Mauritania</option>
+<option value=''>Mauritius</option>
+<option value=''>Mayotte</option>
+<option value=''>Metropolitan France</option>
+<option value=''>Mexico</option>
+<option value=''>Moldova</option>
+<option value=''>Monaco</option>
+<option value=''>Mongolia</option>
+<option value=''>Montserrat</option>
+<option value=''>Morocco</option>
+<option value=''>Mozambique</option>
+<option value=''>Myanmar</option>
+<option value=''>Namibia</option>
+<option value=''>Nauru</option>
+<option value=''>Nepal</option>
+<option value=''>Netherlands</option>
+<option value=''>Netherlands Antilles</option>
+<option value=''>New Caledonia</option>
+<option value=''>New Zealand</option>
+<option value=''>Nicaragua</option>
+<option value=''>Nieu</option>
+<option value=''>Niger</option>
+<option value=''>Nigeria</option>
+<option value=''>Norfolk Island</option>
+<option value=''>Northern Mariana Islands</option>
+<option value=''>Norway</option>
+<option value=''>Oman</option>
+<option value=''>Pakistan</option>
+<option value=''>Palau</option>
+<option value=''>Palestinian Territory, Occupied</option>
+<option value=''>Panama</option>
+<option value=''>Papua New Guinea</option>
+<option value=''>Paraguay</option>
+<option value=''>Peru</option>
+<option value=''>Philippines</option>
+<option value=''>Pitcairn</option>
+<option value=''>Poland</option>
+<option value=''>Portugal</option>
+<option value=''>Puerto Rico</option>
+<option value=''>Qatar</option>
+<option value=''>Reunion</option>
+<option value=''>Romania</option>
+<option value=''>Rwanda</option>
+<option value=''>Samoa</option>
+<option value=''>San Marino</option>
+<option value=''>Sao Tome and Principe</option>
+<option value=''>Saudi Arabia</option>
+<option value=''>Senegal</option>
+<option value=''>Seychelles</option>
+<option value=''>Sierra Leone</option>
+<option value=''>Singapore</option>
+<option value=''>Slovakia</option>
+<option value=''>Slovenia</option>
+<option value=''>Solomon Islands</option>
+<option value=''>Somalia</option>
+<option value=''>South Africa</option>
+<option value=''>South Georgia and the S. Sandwich Islands</option>
+<option value=''>Spain</option>
+<option value=''>Sri Lanka</option>
+<option value=''>St Helena</option>
+<option value=''>St Kitts and Nevis</option>
+<option value=''>St Lucia</option>
+<option value=''>St Pierre and Miquelon</option>
+<option value=''>St Vincent and the Grenadines</option>
+<option value=''>Sudan</option>
+<option value=''>Suriname</option>
+<option value=''>Svalbard and Jan Mayen Islands</option>
+<option value=''>Swaziland</option>
+<option value=''>Sweden</option>
+<option value=''>Switzerland</option>
+<option value=''>Syria</option>
+<option value=''>Taiwan</option>
+<option value=''>Tajikistan</option>
+<option value=''>Tanzania</option>
+<option value=''>Thailand</option>
+<option value=''>Togo</option>
+<option value=''>Tokelau</option>
+<option value=''>Tonga</option>
+<option value=''>Trinidad and Tobago</option>
+<option value=''>Tunisia</option>
+<option value=''>Turkey</option>
+<option value=''>Turkmenistan</option>
+<option value=''>Turks and Caicos Islands</option>
+<option value=''>Tuvalu</option>
+<option value=''>Uganda</option>
+<option value=''>United Arab Emirates</option>
+<option value=''>United Kingdom</option>
+<option value=''>United States</option>
+<option value=''>United States Minor Outlying Islands</option>
+<option value=''>Uruguay</option>
+<option value=''>Uzbekistan</option>
+<option value=''>Vanuatu</option>
+<option value=''>Vatican City</option>
+<option value=''>Venezuela</option>
+<option value=''>Vietnam</option>
+<option value=''>Virgin Islands - British</option>
+<option value=''>Virgin Islands - US</option>
+<option value=''>Wallis and Futuna Islands</option>
+<option value=''>Western Sahura</option>
+<option value=''>Yemen</option>
+<option value=''>Yugoslavia</option>
+<option value=''>Zaire</option>
+<option value=''>Zambia</option></select></td></tr>
+<tr><td>Почтовый индекс</td><td><input name=zipcode type=text value='' class=box size=44></td><td class=ex>123000</td></tr>
+<tr><td>Область/Штат</td><td><input name=province type=text value='' class=box size=44></td><td class=ex>Московская обл.</td></tr>
+<tr><td>Город</td><td><input name=city type=text value='' class=box size=44></td><td class=ex>п.Иваново</td></tr>
+<tr><td>Адрес</td><td><input name=address type=text value='' class=box size=44></td><td class=ex>ул.Энергетиков, д.29, кв.7</td></tr>
+<tr><td>Телефон*</td><td><input name=phone type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr><tr><td>Мобильный</td><td><input name=mobile type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex></td></tr><tr><td colspan=3><b><center>номер сотового телефона подтверждён</center></b></td></tr>
+<tr><td>&nbsp;Я согласен получать<br>новости компании<br>и sms уведомления (бесплатно)</td><td><input type=checkbox name=agree value=1></td><td class=ex></td></tr><tr><td colspan=2><a href=?do=tlgrm&action=invite>Привязать аккаунт к Telegram</a></td></tr><tr><td colspan=2><a href=?do=viber&action=invite>Привязать аккаунт к Viber</a></td></tr><tr><td>Факс</td><td><input name=fax type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr>
+<tr><td>Серия и номер паспорта</td><td><input name=passport type=text value='' class=box size=44></td><td class=ex>12 34 567890</td></tr>
+<tr><td>Орган, выдавший паспорт</td><td><input name=passorg type=text value='' class=box size=44></td><td class=ex>ОВД Октябрьского района г.Владимира</td></tr>
+<tr><td>Дата выдачи паспорта</td><td><input name=passdate type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
+<tr><td>Дата рождения</td><td><input name=birthday type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
+<tr><td>nic-hdl</td><td><input name=nic type=text value='' class=box size=44></td><td class=ex>IPS-RIPN, 1234/NIC-D</td></tr>
+<tr><td>ICQ</td><td><input name=icq type=text value='' class=box size=44 onKeyPress="filter(event,1,'',1)"></td><td class=ex>163820176</td></tr>
+<tr><td>WMID</td><td><input name=wmid type=text value='' class=box size=44 onKeyPress="filter(event,1,'',1)" maxlength=12></td><td class=ex>418559321589</td></tr>
+
+</table><p><input type=submit value="Сохранить"></p></form>
+<p><a href=?do=profile&page=gauth>Google Authenticator</a></p>
+<p><a href=?do=operations>Последние операции в биллинге</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

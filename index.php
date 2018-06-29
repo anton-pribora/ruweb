@@ -1,31 +1,16 @@
 <?php
 
-use ApCode\Executor\PhpFileExecutor;
-
-include_once __DIR__ . '/bootstrap.php';
-
-$action = Request()->action();
-$pages  = __dir('/pages');
-$page   = $pages . $action;
-$path   = '/';
-
-// Инициализация
-foreach (explode('/', rtrim(dirname($action), '/')) as $folder) {
-    if ($folder) {
-        $path .= "$folder/";
-    }
-    
-    glob_include($pages . $path . "*.init.php");
-}
-
-$executor = new PhpFileExecutor($pages);
+include_once __DIR__ . '/layout/layout.php';
+include_once __DIR__ . '/layout/menu.php';
 
 ob_start();
 
-if ($executor->canExecute($action)) {
-    $executor->execute($action);
+$page =__DIR__ . '/pages/' . strtr($_SERVER['QUERY_STRING'] ?: 'do=login', ['..' => '__', '/' => '_', '\\' => '_', "\0" => '%00']) . '.txt';
+
+if (file_exists($page)) {
+    readfile($page);
 } else {
-    echo 'Файл ' . __dir("/pages$action") . ' не найден';
+    echo "File not found: $page";
 }
 
-include __dir('/layout.php');
+Layout()->render(ob_get_clean());

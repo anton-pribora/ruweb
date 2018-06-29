@@ -1,0 +1,214 @@
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<!-- border-style:solid; for Mozilla ? -->
+<style>
+a   {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #0000cc; text-decoration: underline }
+a.service_url   {color: inherit; text-decoration: none; border-bottom: 1px dashed}
+th  {font-family: verdana, arial, helvetica, sans-serif; font-weight: bold; color: #ffffff; background-color:#3333A2; padding: 2px 2px}
+th a    {font-weight: bold; color: #ffffff;}
+option  {border-color:#000000; border-width:1; font-size: 11px}
+select  {border-color:#000000; border-width:1; font-size: 11px;background-color:white}
+input, button {border-color:#000000; border-width:1; font-size: 11px;background-color:white}
+input[type=radio] {height: 11px;margin:0px}
+input.box   {border-style:solid}
+textarea    {border-color:#000000; border-width:1; font-size: 12px; border-style:solid; background-color:white}
+body    {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #000000 }
+h5  {font-family: verdana, arial, helvetica, sans-serif; font-size: 12px}
+h5 span {font-weight: normal}
+table,td,tr {font-family: verdana, arial, helvetica, sans-serif; font-size: 11px; border: 0}
+td  {vertical-align:top; padding: 2px 4px}
+td.toggle   {padding: 0px 0px}
+#table.details td {padding: 2px 5px}
+tr  {background-color:white};
+table   {background-color:#3333A2}
+hr  {height:1}
+form    {margin:0}
+.ex {color:gray; font-style:italic}
+.disabled, .disabled font {text-decoration:line-through}
+.zero_use {color:gray}
+.c  {text-align: center}
+.r  {text-align: right}
+.l  {text-align: left}
+small   {font-size: 10px}
+table[border~="1"] tr:nth-child(even) {background-color: #eee}
+table[border~="1"] tr:nth-child(odd) {background-color: white}
+table[border~="1"] tr:hover {background-color: #ddd}
+table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
+#nodes-table td {border: 0px; border-bottom: 1px solid #999; border-collapse: collapse; padding: 2px 2px;}
+#nodes-table tr:hover {background-color: #ddd}
+#nodes-table th {background: #fbfbfb; color: #000; border-bottom: 2px solid #999;}
+</style></head>
+<body><basefont face="verdana, arial, helvetica, sans-serif">
+<script>
+function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
+function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
+function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
+    evt = (evt) ? evt : ((event) ? event : null);
+    if (evt) {
+        var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
+            ((evt.keyCode) ? evt.keyCode : evt.which);
+//alert(charCode);
+        if (charCode > 13 && !x^(!(set&1 && isDigit(charCode)) && !(set&2 && isLat(charCode)) && !(set&4 && isRus(charCode)) && exc.indexOf(String.fromCharCode(charCode))==-1)) {
+//      if (evt.returnValue) {
+//          evt.returnValue = false;
+//      } else if (evt.preventDefault) {
+            if (evt.preventDefault) { evt.preventDefault(); } else { evt.returnValue = false; return false; }
+        }
+    }
+}
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
+function Lat(text){
+    var result="";
+    for(i=0;i<text.length;i++) {
+        if(transl[text[i]]!=undefined) { result+=transl[text[i]]; }
+        else { result+=text[i]; }
+    }
+    return result;
+}
+function fieldCheck(field,regexp){
+    if (!field || !regexp || !field.value || !field.style) return;
+    var re = new RegExp(regexp);
+    if (re && !re.test(field.value)) {
+        field.style.borderColor="red";
+        field.style.color="red";
+    } else {
+        field.style.borderColor="black";
+        field.style.color="black";
+    }
+}
+function Limit(field,max) { if (field.value.length>max) field.value=field.value.substr(0,max-1); }
+function maxLen(evt,field,max) {
+    evt = (evt) ? evt : ((event) ? event : null);
+    if (evt && (field.value.length>=max)) {
+        Limit(field,max);
+            if (evt.preventDefault) { evt.preventDefault(); } 
+        else { evt.returnValue = false; return false; }
+    }
+}
+var HelpWnd;
+function Help(id){
+    HlpWnd=window.open("",null,"width=400,height=300,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=yes");
+    HlpWnd.document.write("<title>please wait...</title>");
+    HlpWnd.focus();
+    HlpWnd.location="help.php?show="+id;
+}
+var Plan;
+function ChoosePlan(field,def){
+    if (!def && field) def=field.value;
+    Plan=field;
+    PlanWnd=window.open("",null,"width=350,height=450,status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=no");
+    PlanWnd.document.write("<title>please wait...</title>");
+    PlanWnd.focus();
+    PlanWnd.location="plan.php?str="+def;
+}
+function Disable(field){
+    if (field && !field.disabled) {
+        field.disabled=true;
+        field.style.borderColor="silver";
+    }
+};
+function Enable(field){
+    if (field && field.disabled) {
+        field.disabled=false;
+        field.style.borderColor="black";
+    }
+};
+function Decode(code,key){
+    var str="";
+    for (var i=0;i<code.length;i++) {
+        str=str+String.fromCharCode(code.charCodeAt(i)-key.charCodeAt(i)+48);
+    }
+    return str;
+}
+function mhref(code,key,link){ link.href="ma"+"ilt"+"o:"+Decode(code,key); }
+function MTo(code,key,name){
+    var addr=Decode(code,key);
+    if (name=="") name=addr;
+    document.write("<a href=m"+"ai"+"lto"+":"+addr+">"+name+"</a>");
+}
+function goURL(page,noselect){
+    if (noselect==1) {
+        if (document.getSelection) selection = document.getSelection();
+        else selection = document.selection.createRange().text;
+        if (selection!="") return false;
+    }
+    document.location.href=page;
+}
+//function toggle_visibility(id){
+//  var e;
+//  if ((e=document.getElementById(id)) && e.style) 
+//      if(e.style.display == "none") e.style.display = "table-row";
+//      else e.style.display = "none";
+//} 
+</script>
+<style> td.centr {vertical-align:middle; padding: 4px 4px}</style>
+
+<table border=0 cellspacing=5>
+
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
+
+
+
+</tr>
+
+<tr>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
+ <td align=center>&nbsp;</td>
+
+</tr>
+
+<tr>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
+ <td align=center>&nbsp;</td>
+
+</tr>
+
+
+</table><hr><h5>Заказ хостинга для сайта</h5>
+<form name=addsite method=post action='?do=addsite2'>
+<table border=0 cellspacing=0>
+<tr><td>Домен</td><td><input type=text name=domain size=23 value=></td><td class=ex>domain.ru</td></tr>
+<tr><td colspan=3><i>Если домен требуется зарегистрировать, Вы можете оформить заказ на регистрацию в разделе "<a href=?do=domains>Домены</a>".</i></td></tr><tr><td colspan=3><i>Или Вы можете принять участие <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target=_blank>в акции</a> , сделав заказ хостинга на сумму не менее 800.00 руб.<br>и регистрация домена в зоне RU или РФ будет выполнена бесплатно.</i><br><br>Принять участие в <a href=http://forum.ruweb.net/viewthread.php?tid=2703 target=_blank>акции</a> домен RU или РФ бесплатно <input type=checkbox name=free_ru><br>&nbsp;</td></tr><tr><td>Тарифный план</td><td><input type=text name=plan size=20><input type=button style='height:17px' onClick='ChoosePlan(document.forms.addsite.elements.plan);' value='выбрать тарифный план'></td><td class=ex>U500PB-RU</td></tr>
+<input type=hidden name=phpver value=''>
+<tr><td>Срок обслуживания</td><td><input type=text name=period size=4 class=box> мес.</td><td></td></tr>
+<tr><td>&nbsp;</td><td></td><td></td></tr>
+<tr><td colspan=3>Я впервые пользуюсь услугами вашего хостинга и хочу взять<br> только <a href=javascript:Help(1)>бесплатный тестовый месяц</a> для ознакомления, так как:<br
+><input type=radio name=test value=3 onClick='Disable(document.forms.addsite.elements.period)'>заказываю хостинг для собственного домена в зоне первого уровня<br
+><i>&nbsp;в Вашем профиле должен быть указан тот же e-mail что и в
+<br>контактной информации (whois) по домену.
+<br>&nbsp;Поменять адрес, с которым регистрировались в нашем биллинге
+<br>можно в разделе <a href='?do=profile'>Профиль</a><br><br>
+<input type=radio name=test value=2 onClick='Disable(document.forms.addsite.elements.period)'>у меня есть персональный аттестат Webmoney<br
+><input type=radio name=test value=1 onClick='Disable(document.forms.addsite.elements.period)'>на моем счете есть 90.00 руб.<br
+>или<br><input type=radio name=test value=0 checked onClick='Enable(document.forms.addsite.elements.period)'>Тестовый месяц не нужен
+</td></tr>
+<tr><td colspan=3>&nbsp;</td></tr>
+<tr><td colspan=3><i>Для выполнения первого заказа мы должны созвониться с Вами.
+<br>Это произойдет в тот временной интервал, который Вы указали при регистрации в нашем
+<br>биллинге, после того как будет заказан хостинг (или домен) и этот заказ подтверждён в разделе 
+<br>"неподтверждённые заявки".<br>
+<br>Также возможна активация аккаунта с помощью кода активации, который Вы получите на свой
+<br>сотовый телефон. После подтверждении заказа зайдите в раздел "Активация аккаунта"
+<br>(данное меню появляется только при наличии заказа и при активности сервиса отправки sms)
+</i></td></tr><tr><td colspan=3>&nbsp;</td></tr>
+<tr><td colspan=3><input type=submit value="Заказать"></td></tr>
+<tr><td style="vertical-align:bottom">Комментарий</td><td colspan=2><textarea name=comment></textarea></td></tr>
+</table>
+<p>Комментарий ставьте <b>только</b> при необходимости выполнения какой-то ручной операции. Большинство заявок обрабатывает робот в течение 2-3 минут после подтверждения заявки и наличии на балансе необходимой суммы. Если в заявке указан комментарий, то она передаётся на ручную обработку, срок исполнения которой в течение рабочего дня. Если Вы хотите что-то написать или спросить, то это необходимо делать в нашем 
+<a href=?do=support>Центре Технической Поддержки https://ruweb.net/support/</a></p>
+</form><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>
