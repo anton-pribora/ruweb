@@ -71,7 +71,9 @@ namespace somenamespace {
     class Layout 
     {
         private $menu = [];
-        private $variables = [];
+        private $variables = [
+            'headTags' => [],
+        ];
         
         public function setVar($name, $value)
         {
@@ -175,10 +177,17 @@ namespace somenamespace {
         }
         
         private function tryToFancyOldCode ($text) {
-            $text = preg_replace('~<html>[\s\S]+</style>~', '', $text);
+            $text = preg_replace_callback('~<script[\w\W]*</script>~Uui', function($matches) {
+                $this->variables['headTags'][] = $matches[0];
+                return '';
+            }, $text);
+            
+            $text = preg_replace('~<html>[\s\S]+</head>~Uui', '', $text);
+            $text = preg_replace('~</?body[^>]*>~i', '', $text);
+            $text = preg_replace('~</?basefont[^>]*>~i', '', $text);
+            $text = preg_replace('~<style> td.centr \{vertical-align:middle; padding: 4px 4px\}</style>~i', '', $text);
             $text = preg_replace('~<hr><table border=0 cellspacing=0 width=100%><tr><td>RuBill v0.83<br><small>Сгенерировано[\s\S]+~', '', $text);
             $text = preg_replace('~<table border=0 cellspacing=5>[\w\W]+</table><hr>~Ui', '', $text);
-            $text = preg_replace('~<script[\w\W]+</script>~Ui', '', $text);
             $text = preg_replace('~<p></p>~Ui', '', $text);
             $text = preg_replace('~<hr><table[\s\S]*?</table>~Uui', '', $text);
             $text = preg_replace('~<img src=(img[/\w\.-]+)~ui', '<img src="https://ruweb.net/billing/\\1"', $text);
@@ -188,25 +197,15 @@ namespace somenamespace {
             }, $text);
             
             $text = preg_replace('~<table[\s\S]+</table>~U', '<div class="table-responsive">\\0</div>', $text);
-            
-//             $text = preg_replace_callback('~<select[\s\S]+>~U', function($matches) {
-//                 return '<select class="form-control">';
-//             }, $text);
-            
-//             $text = preg_replace_callback('~<input([^>]*type=[^>]*(text|password).*>)~Ui', function($matches) {
-//                 return '<input class="form-control"' . $matches[1];
-//             }, $text);
-            
-//             $text = preg_replace_callback('~\\?do=(\w+)~', function($matches) {
-//                 return '#' . $matches[1];
-//             }, $text);
+            $text = trim($text);
             
             return $text;
-            return '<pre>' . htmlentities($text) .'</pre>';
+//             return '<pre>' . htmlentities($text) .'</pre>';
         }
         
         public function render($content, $fancy = TRUE) 
         {
+            $fancyContent = $fancy ? $this->tryToFancyOldCode($content) : $content;
 ?>
 <!DOCTYPE html>
 <html>
@@ -219,6 +218,7 @@ namespace somenamespace {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700">
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
     <style type="text/css"><?php readfile(__DIR__ . '/style.css');?></style>
+    <?php echo join("\n    ", $this->variables['headTags']);?> 
 </head>
 
 <body>
@@ -300,10 +300,10 @@ if ($leftMenu) {?>
 <?php } ?>
                 </ul>
                 <div class="py-4">
-                  <?=$fancy ? $this->tryToFancyOldCode($content) : $content?>
+                  <?=$fancyContent?>
                 </div>
 <?php } else { ?>
-              <?=$fancy ? $this->tryToFancyOldCode($content) : $content?>
+              <?=$fancyContent?>
 <?php } ?>
               </div>
             </div>
@@ -317,7 +317,7 @@ if ($leftMenu) {?>
 <?php }?>
                 </ol>
 <?php }?>
-          <?=$fancy ? $this->tryToFancyOldCode($content) : $content?>
+          <?=$fancyContent?>
         </div>
 <?php }?>
     </div>
