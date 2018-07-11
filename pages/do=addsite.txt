@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,67 +148,67 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
-</table><hr><h5>Р—Р°РєР°Р· С…РѕСЃС‚РёРЅРіР° РґР»СЏ СЃР°Р№С‚Р°</h5>
+</table><hr><h5>Заказ хостинга для сайта</h5>
 <form name=addsite method=post action='?do=addsite2'>
 <table border=0 cellspacing=0>
-<tr><td>Р”РѕРјРµРЅ</td><td><input type=text name=domain size=23 value=></td><td class=ex>domain.ru</td></tr>
-<tr><td colspan=3><i>Р•СЃР»Рё РґРѕРјРµРЅ С‚СЂРµР±СѓРµС‚СЃСЏ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ, Р’С‹ РјРѕР¶РµС‚Рµ РѕС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р· РЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЋ РІ СЂР°Р·РґРµР»Рµ "<a href=?do=domains>Р”РѕРјРµРЅС‹</a>".</i></td></tr><tr><td colspan=3><i>РР»Рё Р’С‹ РјРѕР¶РµС‚Рµ РїСЂРёРЅСЏС‚СЊ СѓС‡Р°СЃС‚РёРµ <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target=_blank>РІ Р°РєС†РёРё</a> , СЃРґРµР»Р°РІ Р·Р°РєР°Р· С…РѕСЃС‚РёРЅРіР° РЅР° СЃСѓРјРјСѓ РЅРµ РјРµРЅРµРµ 800.00 СЂСѓР±.<br>Рё СЂРµРіРёСЃС‚СЂР°С†РёСЏ РґРѕРјРµРЅР° РІ Р·РѕРЅРµ RU РёР»Рё Р Р¤ Р±СѓРґРµС‚ РІС‹РїРѕР»РЅРµРЅР° Р±РµСЃРїР»Р°С‚РЅРѕ.</i><br><br>РџСЂРёРЅСЏС‚СЊ СѓС‡Р°СЃС‚РёРµ РІ <a href=http://forum.ruweb.net/viewthread.php?tid=2703 target=_blank>Р°РєС†РёРё</a> РґРѕРјРµРЅ RU РёР»Рё Р Р¤ Р±РµСЃРїР»Р°С‚РЅРѕ <input type=checkbox name=free_ru><br>&nbsp;</td></tr><tr><td>РўР°СЂРёС„РЅС‹Р№ РїР»Р°РЅ</td><td><input type=text name=plan size=20><input type=button style='height:17px' onClick='ChoosePlan(document.forms.addsite.elements.plan);' value='РІС‹Р±СЂР°С‚СЊ С‚Р°СЂРёС„РЅС‹Р№ РїР»Р°РЅ'></td><td class=ex>U500PB-RU</td></tr>
+<tr><td>Домен</td><td><input type=text name=domain size=23 value=></td><td class=ex>domain.ru</td></tr>
+<tr><td colspan=3><i>Если домен требуется зарегистрировать, Вы можете оформить заказ на регистрацию в разделе "<a href=?do=domains>Домены</a>".</i></td></tr><tr><td colspan=3><i>Или Вы можете принять участие <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target=_blank>в акции</a> , сделав заказ хостинга на сумму не менее 800.00 руб.<br>и регистрация домена в зоне RU или РФ будет выполнена бесплатно.</i><br><br>Принять участие в <a href=http://forum.ruweb.net/viewthread.php?tid=2703 target=_blank>акции</a> домен RU или РФ бесплатно <input type=checkbox name=free_ru><br>&nbsp;</td></tr><tr><td>Тарифный план</td><td><input type=text name=plan size=20><input type=button style='height:17px' onClick='ChoosePlan(document.forms.addsite.elements.plan);' value='выбрать тарифный план'></td><td class=ex>U500PB-RU</td></tr>
 <input type=hidden name=phpver value=''>
-<tr><td>РЎСЂРѕРє РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ</td><td><input type=text name=period size=4 class=box> РјРµСЃ.</td><td></td></tr>
+<tr><td>Срок обслуживания</td><td><input type=text name=period size=4 class=box> мес.</td><td></td></tr>
 <tr><td>&nbsp;</td><td></td><td></td></tr>
-<tr><td colspan=3>РЇ РІРїРµСЂРІС‹Рµ РїРѕР»СЊР·СѓСЋСЃСЊ СѓСЃР»СѓРіР°РјРё РІР°С€РµРіРѕ С…РѕСЃС‚РёРЅРіР° Рё С…РѕС‡Сѓ РІР·СЏС‚СЊ<br> С‚РѕР»СЊРєРѕ <a href=javascript:Help(1)>Р±РµСЃРїР»Р°С‚РЅС‹Р№ С‚РµСЃС‚РѕРІС‹Р№ РјРµСЃСЏС†</a> РґР»СЏ РѕР·РЅР°РєРѕРјР»РµРЅРёСЏ, С‚Р°Рє РєР°Рє:<br
-><input type=radio name=test value=3 onClick='Disable(document.forms.addsite.elements.period)'>Р·Р°РєР°Р·С‹РІР°СЋ С…РѕСЃС‚РёРЅРі РґР»СЏ СЃРѕР±СЃС‚РІРµРЅРЅРѕРіРѕ РґРѕРјРµРЅР° РІ Р·РѕРЅРµ РїРµСЂРІРѕРіРѕ СѓСЂРѕРІРЅСЏ<br
-><i>&nbsp;РІ Р’Р°С€РµРј РїСЂРѕС„РёР»Рµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СѓРєР°Р·Р°РЅ С‚РѕС‚ Р¶Рµ e-mail С‡С‚Рѕ Рё РІ
-<br>РєРѕРЅС‚Р°РєС‚РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё (whois) РїРѕ РґРѕРјРµРЅСѓ.
-<br>&nbsp;РџРѕРјРµРЅСЏС‚СЊ Р°РґСЂРµСЃ, СЃ РєРѕС‚РѕСЂС‹Рј СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°Р»РёСЃСЊ РІ РЅР°С€РµРј Р±РёР»Р»РёРЅРіРµ
-<br>РјРѕР¶РЅРѕ РІ СЂР°Р·РґРµР»Рµ <a href='?do=profile'>РџСЂРѕС„РёР»СЊ</a><br><br>
-<input type=radio name=test value=2 onClick='Disable(document.forms.addsite.elements.period)'>Сѓ РјРµРЅСЏ РµСЃС‚СЊ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹Р№ Р°С‚С‚РµСЃС‚Р°С‚ Webmoney<br
-><input type=radio name=test value=1 onClick='Disable(document.forms.addsite.elements.period)'>РЅР° РјРѕРµРј СЃС‡РµС‚Рµ РµСЃС‚СЊ 90.00 СЂСѓР±.<br
->РёР»Рё<br><input type=radio name=test value=0 checked onClick='Enable(document.forms.addsite.elements.period)'>РўРµСЃС‚РѕРІС‹Р№ РјРµСЃСЏС† РЅРµ РЅСѓР¶РµРЅ
+<tr><td colspan=3>Я впервые пользуюсь услугами вашего хостинга и хочу взять<br> только <a href=javascript:Help(1)>бесплатный тестовый месяц</a> для ознакомления, так как:<br
+><input type=radio name=test value=3 onClick='Disable(document.forms.addsite.elements.period)'>заказываю хостинг для собственного домена в зоне первого уровня<br
+><i>&nbsp;в Вашем профиле должен быть указан тот же e-mail что и в
+<br>контактной информации (whois) по домену.
+<br>&nbsp;Поменять адрес, с которым регистрировались в нашем биллинге
+<br>можно в разделе <a href='?do=profile'>Профиль</a><br><br>
+<input type=radio name=test value=2 onClick='Disable(document.forms.addsite.elements.period)'>у меня есть персональный аттестат Webmoney<br
+><input type=radio name=test value=1 onClick='Disable(document.forms.addsite.elements.period)'>на моем счете есть 90.00 руб.<br
+>или<br><input type=radio name=test value=0 checked onClick='Enable(document.forms.addsite.elements.period)'>Тестовый месяц не нужен
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr>
-<tr><td colspan=3><i>Р”Р»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РїРµСЂРІРѕРіРѕ Р·Р°РєР°Р·Р° РјС‹ РґРѕР»Р¶РЅС‹ СЃРѕР·РІРѕРЅРёС‚СЊСЃСЏ СЃ Р’Р°РјРё.
-<br>Р­С‚Рѕ РїСЂРѕРёР·РѕР№РґРµС‚ РІ С‚РѕС‚ РІСЂРµРјРµРЅРЅРѕР№ РёРЅС‚РµСЂРІР°Р», РєРѕС‚РѕСЂС‹Р№ Р’С‹ СѓРєР°Р·Р°Р»Рё РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё РІ РЅР°С€РµРј
-<br>Р±РёР»Р»РёРЅРіРµ, РїРѕСЃР»Рµ С‚РѕРіРѕ РєР°Рє Р±СѓРґРµС‚ Р·Р°РєР°Р·Р°РЅ С…РѕСЃС‚РёРЅРі (РёР»Рё РґРѕРјРµРЅ) Рё СЌС‚РѕС‚ Р·Р°РєР°Р· РїРѕРґС‚РІРµСЂР¶РґС‘РЅ РІ СЂР°Р·РґРµР»Рµ 
-<br>"РЅРµРїРѕРґС‚РІРµСЂР¶РґС‘РЅРЅС‹Рµ Р·Р°СЏРІРєРё".<br>
-<br>РўР°РєР¶Рµ РІРѕР·РјРѕР¶РЅР° Р°РєС‚РёРІР°С†РёСЏ Р°РєРєР°СѓРЅС‚Р° СЃ РїРѕРјРѕС‰СЊСЋ РєРѕРґР° Р°РєС‚РёРІР°С†РёРё, РєРѕС‚РѕСЂС‹Р№ Р’С‹ РїРѕР»СѓС‡РёС‚Рµ РЅР° СЃРІРѕР№
-<br>СЃРѕС‚РѕРІС‹Р№ С‚РµР»РµС„РѕРЅ. РџРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРё Р·Р°РєР°Р·Р° Р·Р°Р№РґРёС‚Рµ РІ СЂР°Р·РґРµР» "РђРєС‚РёРІР°С†РёСЏ Р°РєРєР°СѓРЅС‚Р°"
-<br>(РґР°РЅРЅРѕРµ РјРµРЅСЋ РїРѕСЏРІР»СЏРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РЅР°Р»РёС‡РёРё Р·Р°РєР°Р·Р° Рё РїСЂРё Р°РєС‚РёРІРЅРѕСЃС‚Рё СЃРµСЂРІРёСЃР° РѕС‚РїСЂР°РІРєРё sms)
+<tr><td colspan=3><i>Для выполнения первого заказа мы должны созвониться с Вами.
+<br>Это произойдет в тот временной интервал, который Вы указали при регистрации в нашем
+<br>биллинге, после того как будет заказан хостинг (или домен) и этот заказ подтверждён в разделе 
+<br>"неподтверждённые заявки".<br>
+<br>Также возможна активация аккаунта с помощью кода активации, который Вы получите на свой
+<br>сотовый телефон. После подтверждении заказа зайдите в раздел "Активация аккаунта"
+<br>(данное меню появляется только при наличии заказа и при активности сервиса отправки sms)
 </i></td></tr><tr><td colspan=3>&nbsp;</td></tr>
-<tr><td colspan=3><input type=submit value="Р—Р°РєР°Р·Р°С‚СЊ"></td></tr>
-<tr><td style="vertical-align:bottom">РљРѕРјРјРµРЅС‚Р°СЂРёР№</td><td colspan=2><textarea name=comment></textarea></td></tr>
+<tr><td colspan=3><input type=submit value="Заказать"></td></tr>
+<tr><td style="vertical-align:bottom">Комментарий</td><td colspan=2><textarea name=comment></textarea></td></tr>
 </table>
-<p>РљРѕРјРјРµРЅС‚Р°СЂРёР№ СЃС‚Р°РІСЊС‚Рµ <b>С‚РѕР»СЊРєРѕ</b> РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹РїРѕР»РЅРµРЅРёСЏ РєР°РєРѕР№-С‚Рѕ СЂСѓС‡РЅРѕР№ РѕРїРµСЂР°С†РёРё. Р‘РѕР»СЊС€РёРЅСЃС‚РІРѕ Р·Р°СЏРІРѕРє РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚ СЂРѕР±РѕС‚ РІ С‚РµС‡РµРЅРёРµ 2-3 РјРёРЅСѓС‚ РїРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ Р·Р°СЏРІРєРё Рё РЅР°Р»РёС‡РёРё РЅР° Р±Р°Р»Р°РЅСЃРµ РЅРµРѕР±С…РѕРґРёРјРѕР№ СЃСѓРјРјС‹. Р•СЃР»Рё РІ Р·Р°СЏРІРєРµ СѓРєР°Р·Р°РЅ РєРѕРјРјРµРЅС‚Р°СЂРёР№, С‚Рѕ РѕРЅР° РїРµСЂРµРґР°С‘С‚СЃСЏ РЅР° СЂСѓС‡РЅСѓСЋ РѕР±СЂР°Р±РѕС‚РєСѓ, СЃСЂРѕРє РёСЃРїРѕР»РЅРµРЅРёСЏ РєРѕС‚РѕСЂРѕР№ РІ С‚РµС‡РµРЅРёРµ СЂР°Р±РѕС‡РµРіРѕ РґРЅСЏ. Р•СЃР»Рё Р’С‹ С…РѕС‚РёС‚Рµ С‡С‚Рѕ-С‚Рѕ РЅР°РїРёСЃР°С‚СЊ РёР»Рё СЃРїСЂРѕСЃРёС‚СЊ, С‚Рѕ СЌС‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ РґРµР»Р°С‚СЊ РІ РЅР°С€РµРј 
-<a href=?do=support>Р¦РµРЅС‚СЂРµ РўРµС…РЅРёС‡РµСЃРєРѕР№ РџРѕРґРґРµСЂР¶РєРё https://ruweb.net/support/</a></p>
-</form><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+<p>Комментарий ставьте <b>только</b> при необходимости выполнения какой-то ручной операции. Большинство заявок обрабатывает робот в течение 2-3 минут после подтверждения заявки и наличии на балансе необходимой суммы. Если в заявке указан комментарий, то она передаётся на ручную обработку, срок исполнения которой в течение рабочего дня. Если Вы хотите что-то написать или спросить, то это необходимо делать в нашем 
+<a href=?do=support>Центре Технической Поддержки https://ruweb.net/support/</a></p>
+</form><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

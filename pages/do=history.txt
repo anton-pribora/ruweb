@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,35 +148,35 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
-</table><hr><p><table border=1><tr><th>#</th><th>Р”Р°С‚Р°</th><th>РћРїРµСЂР°С†РёСЏ</th><th colspan=2>РР·РјРµРЅРµРЅРёРµ Р±Р°Р»Р°РЅСЃР°</th><th>РЎС‚Р°С‚СѓСЃ</th><th>РџРѕРґСЂРѕР±РЅРѕ</th></tr><tr><td><a href=?do=viewtrans2&transid=1277541>1277541</a></td><td>29.04.2018</td><td>РЈРґР°Р»РµРЅРёРµ СѓСЃР»СѓРіРё #<a href='?do=services&page=details&id=13123'>13123</a> - РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ ISPmanager 5 Lite (Р±РµСЃРїР»Р°С‚РЅР°СЏ)</td><td align=right>0.00</td><td align=right>2868.11</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1277541>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1276833>1276833</a></td><td>27.04.2018</td><td>Р”РѕР±Р°РІР»РµРЅРёРµ СѓСЃР»СѓРіРё #<a href='?do=services&page=details&id=13123'>13123</a> - РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ ISPmanager 5 Lite (Р±РµСЃРїР»Р°С‚РЅР°СЏ)</td><td align=right>0.00</td><td align=right>2868.11</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1276833>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1252024>1252024</a></td><td>09.02.2018</td><td>РЈРґР°Р»РµРЅРёРµ СѓСЃР»СѓРіРё #<a href='?do=services&page=details&id=6990'>6990</a> - Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVM-MINI</td><td align=right>0.00</td><td align=right>2868.11</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1252024>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1246540>1246540</a></td><td>26.01.2018</td><td>РџСЂРёРѕСЃС‚Р°РЅРѕРІРєР° СѓСЃР»СѓРіРё #<a href='?do=services&page=details&id=6990'>6990</a> - Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVM-MINI</td><td align=right>0.00</td><td align=right>2868.11</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1246540>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1244928>1244928</a></td><td>20.01.2018</td><td>Р”РѕР±Р°РІР»РµРЅРёРµ СѓСЃР»СѓРіРё #<a href='?do=services&page=details&id=12120'>12120</a> - Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MICRO</td><td align=right>-5781.89</td><td align=right>2868.11</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1244928>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1024844>1024844</a></td><td>13.01.2016</td><td>РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ Р°РєРєР°СѓРЅС‚Р° РІ Р±РёР»Р»РёРЅРі СЃРёСЃС‚РµРјРµ</td><td align=right>0.00</td><td align=right>0.00</td><td>РІС‹РїРѕР»РЅРµРЅР°</td><td><a href=?do=viewtrans2&transid=1024844>РїРѕРґСЂРѕР±РЅРѕ</a></td></tr></table></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+</table><hr><p><table border=1><tr><th>#</th><th>Дата</th><th>Операция</th><th colspan=2>Изменение баланса</th><th>Статус</th><th>Подробно</th></tr><tr><td><a href=?do=viewtrans2&transid=1277541>1277541</a></td><td>29.04.2018</td><td>Удаление услуги #<a href='?do=services&page=details&id=13123'>13123</a> - Панель управления ISPmanager 5 Lite (бесплатная)</td><td align=right>0.00</td><td align=right>2868.11</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1277541>подробно</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1276833>1276833</a></td><td>27.04.2018</td><td>Добавление услуги #<a href='?do=services&page=details&id=13123'>13123</a> - Панель управления ISPmanager 5 Lite (бесплатная)</td><td align=right>0.00</td><td align=right>2868.11</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1276833>подробно</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1252024>1252024</a></td><td>09.02.2018</td><td>Удаление услуги #<a href='?do=services&page=details&id=6990'>6990</a> - Виртуальный выделенный сервер KVM-MINI</td><td align=right>0.00</td><td align=right>2868.11</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1252024>подробно</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1246540>1246540</a></td><td>26.01.2018</td><td>Приостановка услуги #<a href='?do=services&page=details&id=6990'>6990</a> - Виртуальный выделенный сервер KVM-MINI</td><td align=right>0.00</td><td align=right>2868.11</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1246540>подробно</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1244928>1244928</a></td><td>20.01.2018</td><td>Добавление услуги #<a href='?do=services&page=details&id=12120'>12120</a> - Виртуальный выделенный сервер KVMz-MICRO</td><td align=right>-5781.89</td><td align=right>2868.11</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1244928>подробно</a></td></tr><tr><td><a href=?do=viewtrans2&transid=1024844>1024844</a></td><td>13.01.2016</td><td>Создание нового аккаунта в биллинг системе</td><td align=right>0.00</td><td align=right>0.00</td><td>выполнена</td><td><a href=?do=viewtrans2&transid=1024844>подробно</a></td></tr></table></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

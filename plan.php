@@ -1,4 +1,6 @@
-
+<?php 
+header('Content-type: text/html; charset=windows-1251');
+?>
 <style>
 a#input-minus, a#input-plus {text-decoration:none;color:black;font-size:smaller}
 td {white-space:nowrap}
@@ -69,7 +71,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
 	evt = (evt) ? evt : ((event) ? event : null);
 	if (evt) {
 		var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -83,7 +85,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
 		}
 	}
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
 	var result="";
 	for(i=0;i<text.length;i++) {
@@ -169,7 +171,7 @@ function goURL(page,noselect){
 //} 
 </script>
 
-<center><h5>Р’С‹Р±РѕСЂ С‚Р°СЂРёС„РЅРѕРіРѕ РїР»Р°РЅР°</h5>
+<center><h5>Выбор тарифного плана</h5>
 <script>
 function calc_sql(){
 	e=document.forms.tab.elements;
@@ -204,50 +206,50 @@ function OS(f){
 }
 </script>
 <form method=get style="MARGIN: 0px; PADDING: 0px" name=tab onSubmit="return OS()">
-<p>Р“СЂСѓРїРїР°&nbsp;С‚Р°СЂРёС„РѕРІ:&nbsp;<select name=group onChange='document.location.href="plan.php?group="+this.value'>
-<option value='unlim' selected>Р‘РµР·Р»РёРјРёС‚РЅС‹Рµ С‚Р°СЂРёС„С‹</option><option value='vip' >VIP-С‚Р°СЂРёС„С‹</option><option value='cms' >CMS-С‚Р°СЂРёС„С‹</option><option value='res' >Р РµСЃРµР»Р»РµСЂСЃРєРёРµ</option></select></p>
+<p>Группа&nbsp;тарифов:&nbsp;<select name=group onChange='document.location.href="plan.php?group="+this.value'>
+<option value='unlim' selected>Безлимитные тарифы</option><option value='vip' >VIP-тарифы</option><option value='cms' >CMS-тарифы</option><option value='res' >Реселлерские</option></select></p>
 <table cellspacing=0 border=0>
 <tr>
-<input type=hidden name=loc value="-RU"><td colspan=2>РњРµСЃС‚Рѕ:</td>
-<td><a href="#" id="input-minus" for="m" onclick="input_mod(this)">[-]</a><input id="m" name="m" maxlength=5 size=5 value="1000" min="1000" step="500"><a href="#" id="input-plus" for="m" onclick="input_mod(this)">[+]</a> РњР±</td>
+<input type=hidden name=loc value="-RU"><td colspan=2>Место:</td>
+<td><a href="#" id="input-minus" for="m" onclick="input_mod(this)">[-]</a><input id="m" name="m" maxlength=5 size=5 value="1000" min="1000" step="500"><a href="#" id="input-plus" for="m" onclick="input_mod(this)">[+]</a> Мб</td>
 </tr><tr>
-<td colspan=2>РџРѕРґРґРµСЂР¶РєР° PHP/CGI/Cron:</td>
+<td colspan=2>Поддержка PHP/CGI/Cron:</td>
 <td style='padding-left:10px'><input type=checkbox name=php value=1 checked onChange=calc_php() onClick=calc_php()></td>
 </tr><tr>
-<td colspan=2>РџРѕРґРґРµСЂР¶РєР° mySQL:</td>
+<td colspan=2>Поддержка mySQL:</td>
 <td style='padding-left:10px'><input type=checkbox name=sql value=1 checked onChange=calc_sql() onClick=calc_sql()></td>
 </tr><tr>
-<td colspan=2>Р’С‹РґРµР»РµРЅРЅС‹Р№ IP:</td>
+<td colspan=2>Выделенный IP:</td>
 <td style='padding-left:10px'><input type=checkbox name=ip value=1></td>
 </tr>
 <tr>
-<td>РџРѕРґРґРѕРјРµРЅС‹:</td><td>&nbsp;5&nbsp;+&nbsp;</td>
+<td>Поддомены:</td><td>&nbsp;5&nbsp;+&nbsp;</td>
 <td><a href="#" id="input-minus" for="d3" onclick="input_mod(this)">[-]</a><input id="d3" name="d3" maxlength="3" size=5 value=""><a href="#" id="input-plus" for="d3" onclick="input_mod(this)">[+]</a></td>
 </tr><tr>
 <tr>
-<td>РџР°СЂРєРѕРІР°РЅРЅС‹Рµ РґРѕРјРµРЅС‹:</td><td>&nbsp;5&nbsp;+&nbsp;</td>
+<td>Паркованные домены:</td><td>&nbsp;5&nbsp;+&nbsp;</td>
 <td><a href="#" id="input-minus" for="d2" onclick="input_mod(this)">[-]</a><input id="d2" name="d2" maxlength="3" size=5 value=""><a href="#" id="input-plus" for="d2" onclick="input_mod(this)">[+]</a></td>
 </tr><tr>
-<td colspan=2>Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РґРѕРјРµРЅС‹:</td>
+<td colspan=2>Дополнительные домены:</td>
 <td><a href="#" id="input-minus" for="ad" onclick="input_mod(this)">[-]</a><input id="ad" name="ad" maxlength="3" size=5 value=""><a href="#" id="input-plus" for="ad" onclick="input_mod(this)">[+]</a></td>
 </tr>
 
 <tr>
-<td colspan=3 align="center"><br><input type="submit" value="РџРѕСЃС‡РёС‚Р°С‚СЊ" name="submit"></td>
+<td colspan=3 align="center"><br><input type="submit" value="Посчитать" name="submit"></td>
 </tr>
 </table>
 
-<p>РўР°СЂРёС„РЅС‹Р№ РїР»Р°РЅ: <nobr><b>U1000PB-RU</b></nobr>
-<br>Р¦РµРЅР°: <b>50.00 СЂСѓР±./РјРµСЃ</b> <nobr>(<b>540.00 СЂСѓР±./РіРѕРґ</b>)</nobr></p>
+<p>Тарифный план: <nobr><b>U1000PB-RU</b></nobr>
+<br>Цена: <b>50.00 руб./мес</b> <nobr>(<b>540.00 руб./год</b>)</nobr></p>
 
-<input type=button name=ok value='   Р’С‹Р±СЂР°С‚СЊ   ' OnClick='opener.focus(); if (opener.Plan) opener.Plan.value="U1000PB-RU"; window.close()' >
+<input type=button name=ok value='   Выбрать   ' OnClick='opener.focus(); if (opener.Plan) opener.Plan.value="U1000PB-RU"; window.close()' >
 
 </form></center>
 <script>
 var e=document.forms.tab.elements;
 if (e.loc && e.loc.value=='' && e.php ) { e.php.disabled=true; e.php.value='P'; } else if (e.php) e.php.disabled=false;
 if (!opener || !opener.Plan) {
-	e.ok.value='Р—Р°РєСЂС‹С‚СЊ';
+	e.ok.value='Закрыть';
 	e.ok.disabled=false;
 }
 </script>

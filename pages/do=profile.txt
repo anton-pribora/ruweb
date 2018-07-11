@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,50 +148,50 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
 </table><hr>
-<h5>РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ</h5>
+<h5>Персональные данные</h5>
 <form action='?do=editprofile' method=post>
 <input name=userid type=hidden size=30 maxlength=30 value=''>
 <table cellspacing=0 border=0 cellpadding=3>
 <tr><td>E-mail*</td><td><input name=email type=text value='' class=box size=44 onKeyPress="filter(event,4,'',0)"></td><td class=ex>user@domain.ru</td></tr>
-<tr><td>РџР°СЂРѕР»СЊ</td><td><input name=password type=password value='' class=box size=44></td><td></td></tr>
-<tr><td>РџР°СЂРѕР»СЊ (РµС‰Рµ СЂР°Р·)</td><td><input name=confirm type=password value='' class=box size=44></td><td></td></tr><tr><td colspan=2><a href='?do=oauth'>РђРІС‚РѕСЂРёР·Р°С†РёСЏ С‡РµСЂРµР· РІРЅРµС€РЅРёРµ СЃРµСЂРІРёСЃС‹(OAuth)</a></td><td></td></tr><tr><td>Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ E-mail<br>РґР»СЏ С„РёРЅР°РЅСЃРѕРІС‹С… СѓРІРµРґРѕРјР»РµРЅРёР№</td><td><input name=email_org type=text value='' class=box size=44></td><td class=ex>user@domain.ru</td></tr>
-<tr><td>Р¤Р°РјРёР»РёСЏ*</td><td><input name=lname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>РЎРёРґРѕСЂРѕРІ</td></tr>
-<tr><td>РРјСЏ*</td><td><input name=fname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>РРІР°РЅ</td></tr>
-<tr><td>РћС‚С‡РµСЃС‚РІРѕ</td><td><input name=sname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>РџРµС‚СЂРѕРІРёС‡</td></tr>
-<tr><td>РџРѕР»РЅРѕРµ РёРјСЏ (Р°РЅРіР».)</td><td><input name=name type=text value='' class=box size=44 onKeyPress="filter(event,2,'- ',1)"></td><td class=ex>Ivan P Sidorov</td></tr>
-<tr><td>РЎС‚СЂР°РЅР°</td><td colspan=2><select name=country class=box><option></option>
+<tr><td>Пароль</td><td><input name=password type=password value='' class=box size=44></td><td></td></tr>
+<tr><td>Пароль (еще раз)</td><td><input name=confirm type=password value='' class=box size=44></td><td></td></tr><tr><td colspan=2><a href='?do=oauth'>Авторизация через внешние сервисы(OAuth)</a></td><td></td></tr><tr><td>Дополнительный E-mail<br>для финансовых уведомлений</td><td><input name=email_org type=text value='' class=box size=44></td><td class=ex>user@domain.ru</td></tr>
+<tr><td>Фамилия*</td><td><input name=lname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Сидоров</td></tr>
+<tr><td>Имя*</td><td><input name=fname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Иван</td></tr>
+<tr><td>Отчество</td><td><input name=sname type=text value='' class=box size=44 onKeyPress="filter(event,4,'- ',1)"></td><td class=ex>Петрович</td></tr>
+<tr><td>Полное имя (англ.)</td><td><input name=name type=text value='' class=box size=44 onKeyPress="filter(event,2,'- ',1)"></td><td class=ex>Ivan P Sidorov</td></tr>
+<tr><td>Страна</td><td colspan=2><select name=country class=box><option></option>
 <option value='' selected>Russia</option>
 <option value=''>Ukraine</option>
 <option value=''>Belarus</option>
@@ -429,20 +429,20 @@ function goURL(page,noselect){
 <option value=''>Yugoslavia</option>
 <option value=''>Zaire</option>
 <option value=''>Zambia</option></select></td></tr>
-<tr><td>РџРѕС‡С‚РѕРІС‹Р№ РёРЅРґРµРєСЃ</td><td><input name=zipcode type=text value='' class=box size=44></td><td class=ex>123000</td></tr>
-<tr><td>РћР±Р»Р°СЃС‚СЊ/РЁС‚Р°С‚</td><td><input name=province type=text value='' class=box size=44></td><td class=ex>РњРѕСЃРєРѕРІСЃРєР°СЏ РѕР±Р».</td></tr>
-<tr><td>Р“РѕСЂРѕРґ</td><td><input name=city type=text value='' class=box size=44></td><td class=ex>Рї.РРІР°РЅРѕРІРѕ</td></tr>
-<tr><td>РђРґСЂРµСЃ</td><td><input name=address type=text value='' class=box size=44></td><td class=ex>СѓР».Р­РЅРµСЂРіРµС‚РёРєРѕРІ, Рґ.29, РєРІ.7</td></tr>
-<tr><td>РўРµР»РµС„РѕРЅ*</td><td><input name=phone type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr><tr><td>РњРѕР±РёР»СЊРЅС‹Р№</td><td><input name=mobile type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex></td></tr><tr><td colspan=3><b><center>РЅРѕРјРµСЂ СЃРѕС‚РѕРІРѕРіРѕ С‚РµР»РµС„РѕРЅР° РїРѕРґС‚РІРµСЂР¶РґС‘РЅ</center></b></td></tr>
-<tr><td>&nbsp;РЇ СЃРѕРіР»Р°СЃРµРЅ РїРѕР»СѓС‡Р°С‚СЊ<br>РЅРѕРІРѕСЃС‚Рё РєРѕРјРїР°РЅРёРё<br>Рё sms СѓРІРµРґРѕРјР»РµРЅРёСЏ (Р±РµСЃРїР»Р°С‚РЅРѕ)</td><td><input type=checkbox name=agree value=1></td><td class=ex></td></tr><tr><td colspan=2><a href=?do=tlgrm&action=invite>РџСЂРёРІСЏР·Р°С‚СЊ Р°РєРєР°СѓРЅС‚ Рє Telegram</a></td></tr><tr><td colspan=2><a href=?do=viber&action=invite>РџСЂРёРІСЏР·Р°С‚СЊ Р°РєРєР°СѓРЅС‚ Рє Viber</a></td></tr><tr><td>Р¤Р°РєСЃ</td><td><input name=fax type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr>
-<tr><td>РЎРµСЂРёСЏ Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р°</td><td><input name=passport type=text value='' class=box size=44></td><td class=ex>12 34 567890</td></tr>
-<tr><td>РћСЂРіР°РЅ, РІС‹РґР°РІС€РёР№ РїР°СЃРїРѕСЂС‚</td><td><input name=passorg type=text value='' class=box size=44></td><td class=ex>РћР’Р” РћРєС‚СЏР±СЂСЊСЃРєРѕРіРѕ СЂР°Р№РѕРЅР° Рі.Р’Р»Р°РґРёРјРёСЂР°</td></tr>
-<tr><td>Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р°</td><td><input name=passdate type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
-<tr><td>Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ</td><td><input name=birthday type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
+<tr><td>Почтовый индекс</td><td><input name=zipcode type=text value='' class=box size=44></td><td class=ex>123000</td></tr>
+<tr><td>Область/Штат</td><td><input name=province type=text value='' class=box size=44></td><td class=ex>Московская обл.</td></tr>
+<tr><td>Город</td><td><input name=city type=text value='' class=box size=44></td><td class=ex>п.Иваново</td></tr>
+<tr><td>Адрес</td><td><input name=address type=text value='' class=box size=44></td><td class=ex>ул.Энергетиков, д.29, кв.7</td></tr>
+<tr><td>Телефон*</td><td><input name=phone type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr><tr><td>Мобильный</td><td><input name=mobile type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex></td></tr><tr><td colspan=3><b><center>номер сотового телефона подтверждён</center></b></td></tr>
+<tr><td>&nbsp;Я согласен получать<br>новости компании<br>и sms уведомления (бесплатно)</td><td><input type=checkbox name=agree value=1></td><td class=ex></td></tr><tr><td colspan=2><a href=?do=tlgrm&action=invite>Привязать аккаунт к Telegram</a></td></tr><tr><td colspan=2><a href=?do=viber&action=invite>Привязать аккаунт к Viber</a></td></tr><tr><td>Факс</td><td><input name=fax type=text value='' class=box size=44 onKeyPress="filter(event,1,'+ ',1)"></td><td class=ex>+7 095 1234567</td></tr>
+<tr><td>Серия и номер паспорта</td><td><input name=passport type=text value='' class=box size=44></td><td class=ex>12 34 567890</td></tr>
+<tr><td>Орган, выдавший паспорт</td><td><input name=passorg type=text value='' class=box size=44></td><td class=ex>ОВД Октябрьского района г.Владимира</td></tr>
+<tr><td>Дата выдачи паспорта</td><td><input name=passdate type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
+<tr><td>Дата рождения</td><td><input name=birthday type=text value='' class=box size=44 onKeyPress="filter(event,1,'.',1)"></td><td class=ex>31.12.2000</td></tr>
 <tr><td>nic-hdl</td><td><input name=nic type=text value='' class=box size=44></td><td class=ex>IPS-RIPN, 1234/NIC-D</td></tr>
 <tr><td>ICQ</td><td><input name=icq type=text value='' class=box size=44 onKeyPress="filter(event,1,'',1)"></td><td class=ex>163820176</td></tr>
 <tr><td>WMID</td><td><input name=wmid type=text value='' class=box size=44 onKeyPress="filter(event,1,'',1)" maxlength=12></td><td class=ex>418559321589</td></tr>
 
-</table><p><input type=submit value="РЎРѕС…СЂР°РЅРёС‚СЊ"></p></form>
+</table><p><input type=submit value="Сохранить"></p></form>
 <p><a href=?do=profile&page=gauth>Google Authenticator</a></p>
-<p><a href=?do=operations>РџРѕСЃР»РµРґРЅРёРµ РѕРїРµСЂР°С†РёРё РІ Р±РёР»Р»РёРЅРіРµ</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+<p><a href=?do=operations>Последние операции в биллинге</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

@@ -13,4 +13,6 @@ if (file_exists($page)) {
     echo "File not found: $page";
 }
 
+header('Content-type: text/html; charset=windows-1251');
+
 Layout()->render(ob_get_clean());

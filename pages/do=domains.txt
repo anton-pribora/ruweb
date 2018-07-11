@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,40 +148,40 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
-</table><hr><h5>Р’Р°С€Рё РґРѕРјРµРЅС‹</h5>
+</table><hr><h5>Ваши домены</h5>
 <form><input type=hidden name=do value=adddomain>
-Р—Р°СЏРІРєР° РЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЋ РґРѕРјРµРЅР°: <input name=domain>&nbsp;<b>.</b>&nbsp;<select name=ext>
+Заявка на регистрацию домена: <input name=domain>&nbsp;<b>.</b>&nbsp;<select name=ext>
 <option>alldomains</option>
 <option>audio</option>
 <option>be</option>
@@ -272,13 +272,13 @@ function goURL(page,noselect){
 <option>world</option>
 <option>ws</option>
 <option>xyz</option>
-<option>РґРµС‚Рё</option>
-<option>РјРѕСЃРєРІР°</option>
-<option>РѕРЅР»Р°Р№РЅ</option>
-<option>СЂСѓ</option>
-<option>СЂСѓСЃ</option>
-<option><b>СЂС„</b></option>
-</select> РїСЂРѕРІРµСЂРёС‚СЊ РЅР° Р·Р°РЅСЏС‚РѕСЃС‚СЊ<sup>*</sup> <input type=checkbox name=checkwhois value=1 checked> <input type=submit value="Р”РѕР±Р°РІРёС‚СЊ"></form><p><i><sup>*</sup>Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ РїСЂРѕРІРµСЂРєР° РІРµРґС‘С‚СЃСЏ РґР»СЏ Р·РѕРЅ RU Рё Р Р¤. РћСЃС‚Р°Р»СЊРЅС‹Рµ РґРѕРјРµРЅС‹ РїСЂРѕРІРµСЂСЏР№С‚Рµ РЅР° Р·Р°РЅСЏС‚РѕСЃС‚СЊ РїРµСЂРµРґ Р·Р°РєР°Р·РѕРј РЅР° РЅР°С€РµРј СЃР°Р№С‚Рµ Рё СЃР°Р№С‚Р°С… РѕС„РёС†РёР°Р»СЊРЅС‹С… СЂРµРіРёСЃС‚СЂР°С‚РѕСЂРѕРІ. <font color=red>РќР• РџРћР›Р¬Р—РЈР™РўР•РЎР¬</font> СЃР»СѓС‡Р°Р№РЅС‹РјРё СЃР°Р№С‚Р°РјРё РїСЂРё РїСЂРѕРІРµСЂРєРµ РґРѕРјРµРЅР° РЅР° Р·Р°РЅСЏС‚РѕСЃС‚СЊ - СЌС‚Рѕ РїРѕС‚РµРЅС†РёР°Р»СЊРЅС‹Р№ РёСЃС‚РѕС‡РЅРёРє СѓС‚РµС‡РєРё РёРЅС„РѕСЂРјР°С†РёРё Рѕ Р·Р°РєР°Р·Рµ Р’Р°С€РµРіРѕ РґРѕРјРµРЅР°</i></p>
+<option>дети</option>
+<option>москва</option>
+<option>онлайн</option>
+<option>ру</option>
+<option>рус</option>
+<option><b>рф</b></option>
+</select> проверить на занятость<sup>*</sup> <input type=checkbox name=checkwhois value=1 checked> <input type=submit value="Добавить"></form><p><i><sup>*</sup>автоматическая проверка ведётся для зон RU и РФ. Остальные домены проверяйте на занятость перед заказом на нашем сайте и сайтах официальных регистраторов. <font color=red>НЕ ПОЛЬЗУЙТЕСЬ</font> случайными сайтами при проверке домена на занятость - это потенциальный источник утечки информации о заказе Вашего домена</i></p>
 <form><input type=hidden name=do value=transdomain>
-Р—Р°СЏРІРєР° РЅР° РїРµСЂРµРЅРѕСЃ РґРѕРјРµРЅР°: <input name=domain> <input type=submit value="РћС‚РїСЂР°РІРёС‚СЊ"></form><p>РџСЂРё РїРµСЂРµРЅРѕСЃРµ Р±РѕР»СЊС€Рµ РґРµСЃСЏС‚Рё РґРѕРјРµРЅРѕРІ RU РёР»Рё Р Р¤ РґР°С‘Рј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ СЃРєРёРґРєРё - РїРёС€РёС‚Рµ РІ <a href=?do=support>С‚РµС…РїРѕРґРґРµСЂР¶РєСѓ</a> РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё.</p><p> Р•СЃР»Рё РЅР°С€Р»Рё РїСЂРѕРґР»РµРЅРёРµ РґРѕРјРµРЅРѕРІ РґРµС€РµРІР»Рµ С‡РµРј Сѓ РЅР°СЃ - <a href=?do=support>РЅР°РїРёС€РёС‚Рµ РЅР°Рј</a> Рё С„РёРЅР°РЅСЃРѕРІС‹Р№ РѕС‚РґРµР» СЃ СѓРґРѕРІРѕР»СЊСЃС‚РІРёРµРј СЂР°СЃСЃРјРѕС‚СЂРёС‚ Р’Р°С€Рµ РїСЂРµРґР»РѕР¶РµРЅРёРµ</p><p>[Р”РѕРјРµРЅРѕРІ РЅРµС‚]</p><p>Р‘РѕРЅСѓСЃРѕРІ РЅР° Р±РµСЃРїР»Р°С‚РЅСѓСЋ СЂРµРіРёСЃС‚СЂР°С†РёСЋ/РїСЂРѕРґР»РµРЅРёРµ РґРѕРјРµРЅР° РІ Р·РѕРЅРµ RU РЅРµС‚. Р’С‹ РјРѕР¶РµС‚Рµ РїСЂРёРЅСЏС‚СЊ СѓС‡Р°СЃС‚РёРµ <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target="_blank">РІ РЅР°С€РµР№ Р±РѕРЅСѓСЃРЅРѕР№ РїСЂРѕРіСЂР°РјРјРµ РїРѕ СЂРµРіРёСЃС‚СЂР°С†РёРё/РїСЂРѕРґР»РµРЅРёСЋ РґРѕРјРµРЅР° Р±РµСЃРїР»Р°С‚РЅРѕ</a>.</p>
-<p><a href="http://forum.ruweb.net/viewthread.php?tid=2189" target="_blank">РџРµСЂРµРЅРѕСЃ РґРѕРјРµРЅРѕРІ Рє РЅР°Рј РЅР° РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ Рё РїСЂРѕРґР»РµРЅРёРµ</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+Заявка на перенос домена: <input name=domain> <input type=submit value="Отправить"></form><p>При переносе больше десяти доменов RU или РФ даём дополнительные скидки - пишите в <a href=?do=support>техподдержку</a> для получения консультации.</p><p> Если нашли продление доменов дешевле чем у нас - <a href=?do=support>напишите нам</a> и финансовый отдел с удовольствием рассмотрит Ваше предложение</p><p>[Доменов нет]</p><p>Бонусов на бесплатную регистрацию/продление домена в зоне RU нет. Вы можете принять участие <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target="_blank">в нашей бонусной программе по регистрации/продлению домена бесплатно</a>.</p>
+<p><a href="http://forum.ruweb.net/viewthread.php?tid=2189" target="_blank">Перенос доменов к нам на обслуживание и продление</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

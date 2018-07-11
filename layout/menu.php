@@ -1,44 +1,46 @@
 <?php
 
+// charset cp1251
+
 $layout = Layout();
 
-$layout->addMenu('/services/'        , ['text' => 'РЈСЃР»СѓРіРё', 'href' => '?do=domains']);
-$layout->addMenu('/services/domains/', ['text' => 'Р”РѕРјРµРЅС‹', 'href' => '?do=domains']);
-$layout->addMenu('/services/sites/'  , ['text' => 'РЎР°Р№С‚С‹', 'href' => '?do=sites']);
+$layout->addMenu('/services/'        , ['text' => 'Услуги', 'href' => '?do=domains']);
+$layout->addMenu('/services/domains/', ['text' => 'Домены', 'href' => '?do=domains']);
+$layout->addMenu('/services/sites/'  , ['text' => 'Сайты', 'href' => '?do=sites']);
 $layout->addMenu('/services/vds/'    , ['text' => 'VDS', 'href' => '?do=vds']);
 $layout->addMenu('/services/ssl/'    , ['text' => 'SSL', 'href' => '?do=services&page=select&groupid=10']);
-$layout->addMenu('/services/other/'  , ['text' => 'Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё', 'href' => '?do=services']);
+$layout->addMenu('/services/other/'  , ['text' => 'Другие услуги', 'href' => '?do=services']);
 
-$layout->addMenu('/services/vds/orders/'  , ['text' => 'РњРѕРё VDS', 'href' => '?do=vds']);
-$layout->addMenu('/services/vds/new/'     , ['text' => 'Р”РѕР±Р°РІРёС‚СЊ VDS', 'href' => '?do=services&page=select&groupid=185&parent=0']);
-$layout->addMenu('/services/vds/settings/', ['text' => 'РќР°СЃС‚СЂРѕР№РєРё', 'href' => '?do=vdsconfig']);
-$layout->addMenu('/services/vds/faq/'     , ['text' => 'Р’РѕРїСЂРѕСЃС‹ РїРµСЂРµРґ РїРѕРєСѓРїРєРѕР№', 'href' => 'http://forum.ruweb.net/forumdisplay.php?fid=34']);
+$layout->addMenu('/services/vds/orders/'  , ['text' => 'Мои VDS', 'href' => '?do=vds']);
+$layout->addMenu('/services/vds/new/'     , ['text' => 'Добавить VDS', 'href' => '?do=services&page=select&groupid=185&parent=0']);
+$layout->addMenu('/services/vds/settings/', ['text' => 'Настройки', 'href' => '?do=vdsconfig']);
+$layout->addMenu('/services/vds/faq/'     , ['text' => 'Вопросы перед покупкой', 'href' => 'http://forum.ruweb.net/forumdisplay.php?fid=34']);
 
-$layout->addMenu('/services/sites/orders/'  , ['text' => 'РњРѕРё СЃР°Р№С‚С‹', 'href' => '?do=sites']);
-$layout->addMenu('/services/sites/new/'     , ['text' => 'Р”РѕР±Р°РІРёС‚СЊ СЃР°Р№С‚', 'href' => '?do=addsite']);
-$layout->addMenu('/services/sites/settings/', ['text' => 'РќР°СЃС‚СЂРѕР№РєРё', 'href' => '?do=siteconfig']);
+$layout->addMenu('/services/sites/orders/'  , ['text' => 'Мои сайты', 'href' => '?do=sites']);
+$layout->addMenu('/services/sites/new/'     , ['text' => 'Добавить сайт', 'href' => '?do=addsite']);
+$layout->addMenu('/services/sites/settings/', ['text' => 'Настройки', 'href' => '?do=siteconfig']);
 
-$layout->addMenu('/news/'   , ['text' => 'РќРѕРІРѕСЃС‚Рё', 'href' => '?do=newsletter']);
-$layout->addMenu('/support/', ['text' => 'РџРѕРґРґРµСЂР¶РєР°', 'href' => '?do=support']);
+$layout->addMenu('/news/'   , ['text' => 'Новости', 'href' => '?do=newsletter']);
+$layout->addMenu('/support/', ['text' => 'Поддержка', 'href' => '?do=support']);
 
-$layout->addMenu('/money/'         , ['text' => 'Р‘Р°Р»Р°РЅСЃ', 'extra' => '2868.11 СЂСѓР±.', 'href' => '?do=balance']);
-$layout->addMenu('/money/balance/' , ['text' => 'РЎРѕСЃС‚РѕСЏРЅРёРµ СЃС‡С‘С‚Р°', 'href' => '?do=balance']);
-$layout->addMenu('/money/payment/' , ['text' => 'РџРѕРїРѕР»РЅРёС‚СЊ', 'href' => '?do=refill&page=select']);
-$layout->addMenu('/money/history/' , ['text' => 'РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№', 'href' => '?do=history']);
-$layout->addMenu('/money/discount/', ['text' => 'Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ СЃРєРёРґРєРё', 'href' => '?do=discount']);
+$layout->addMenu('/money/'         , ['text' => 'Баланс', 'extra' => '2868.11 руб.', 'href' => '?do=balance']);
+$layout->addMenu('/money/balance/' , ['text' => 'Состояние счёта', 'href' => '?do=balance']);
+$layout->addMenu('/money/payment/' , ['text' => 'Пополнить', 'href' => '?do=refill&page=select']);
+$layout->addMenu('/money/history/' , ['text' => 'История операций', 'href' => '?do=history']);
+$layout->addMenu('/money/discount/', ['text' => 'Дополнительные скидки', 'href' => '?do=discount']);
 
-$layout->addMenu('/account/'          , ['text' => 'РђРєРєР°СѓРЅС‚ #1234', 'href' => '?do=profile']);
-$layout->addMenu('/account/profile/'  , ['text' => 'РџСЂРѕС„РёР»СЊ', 'href' => '?do=profile']);
-$layout->addMenu('/account/promo/'    , ['text' => 'РџСЂРѕРјРѕР°РєС†РёРё', 'href' => '?do=promo']);
-$layout->addMenu('/account/partner/'  , ['text' => 'РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°', 'href' => '?do=part']);
-$layout->addMenu('/account/documents/', ['text' => 'Р”РѕРєСѓРјРµРЅС‚С‹', 'href' => '?do=docs']);
+$layout->addMenu('/account/'          , ['text' => 'Аккаунт #1234', 'href' => '?do=profile']);
+$layout->addMenu('/account/profile/'  , ['text' => 'Профиль', 'href' => '?do=profile']);
+$layout->addMenu('/account/promo/'    , ['text' => 'Промоакции', 'href' => '?do=promo']);
+$layout->addMenu('/account/partner/'  , ['text' => 'Партнёрская программа', 'href' => '?do=part']);
+$layout->addMenu('/account/documents/', ['text' => 'Документы', 'href' => '?do=docs']);
 
-$layout->addMenu('/account/profile/info/'   , ['text' => 'РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ', 'href' => '?do=profile']);
-$layout->addMenu('/account/profile/history/', ['text' => 'РџРѕСЃР»РµРґРЅРёРµ РѕРїРµСЂР°С†РёРё', 'href' => '?do=operations']);
+$layout->addMenu('/account/profile/info/'   , ['text' => 'Персональные данные', 'href' => '?do=profile']);
+$layout->addMenu('/account/profile/history/', ['text' => 'Последние операции', 'href' => '?do=operations']);
 
-$layout->addMenu('/logout/', ['text' => 'Р’С‹С…РѕРґ', 'href' => '?do=logout']);
+$layout->addMenu('/logout/', ['text' => 'Выход', 'href' => '?do=logout']);
 
-$do = $_GET['do'] ?? 'main';
+$do = isset($_GET['do']) ? $_GET['do'] : 'main';
 
 $map = [
     'support'    => '/support/',
@@ -64,14 +66,14 @@ if ($do == 'newsletter') {
     $layout->activateMenu('/news/');
     
     if (isset($_GET['id'])) {
-        $layout->addCrumb('<a href="">РќРѕРІРѕСЃС‚СЊ #' . $_GET['id'] . '</a>');
+        $layout->addCrumb('<a href="">Новость #' . $_GET['id'] . '</a>');
     }
 }
 elseif ($do == 'viewtrans2' ) {
     $layout->activateMenu('/money/history/');
     
     if (isset($_GET['transid'])) {
-        $layout->addCrumb('<a href="">РўСЂР°РЅР·Р°РєС†РёСЏ #' . $_GET['transid'] . '</a>');
+        $layout->addCrumb('<a href="">Транзакция #' . $_GET['transid'] . '</a>');
     }
 }
 elseif ($do == 'services') {

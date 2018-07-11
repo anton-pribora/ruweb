@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,64 +148,64 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
-</table><hr><h5>Р”Р°РЅРЅС‹Рµ РїРѕ СѓСЃР»СѓРіРµ #12120</h5>
+</table><hr><h5>Данные по услуге #12120</h5>
 <p><table class=details border=1>
-<tr><th>РќР°РёРјРµРЅРѕРІР°РЅРёРµ</th><td><a class=service_url href='https://ruweb.net/vds#564' target=_blank><b>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MICRO</b></a></td><td><form action='?do=services&page=change&id=12120' method=post>РџРѕРјРµРЅСЏС‚СЊ РЅР° <select name=to><option></option>
-<option value='563'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-NANO</option>
-<option value='565'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MINI</option>
-<option value='566'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-LIGHT</option>
-<option value='567'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MEDIUM</option>
-<option value='568'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-STANDART</option>
-<option value='569'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-PROF</option>
-<option value='570'>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MEGA</option></select> <input type=submit value='РЎРјРµРЅРёС‚СЊ'></form></td></tr>
-<tr><th>РљР°С‚РµРіРѕСЂРёСЏ</th><td colspan=2><b>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Рµ РІС‹РґРµР»РµРЅРЅС‹Рµ СЃРµСЂРІРµСЂР° (VDS) [KVM]</b></td></tr>
-<tr><th>Р”РѕР±Р°РІР»РµРЅР°</th><td>20.01.2018</td><td></td></tr>
-<tr><th>РћРїР»Р°С‡РµРЅР° РґРѕ</th><td>20.01.2021<br>РґР»СЏ РїСЂРѕРґР»РµРЅРёСЏ СѓСЃР»СѓРіРё <a href="?do=refill&page=select&amount=2733.1">РїРѕРїРѕР»РЅРёС‚Рµ Р±Р°Р»Р°РЅСЃ РЅР° 2733.09 СЂСѓР±.</a></td><td><nobr><form action='?do=services&page=details&id=12120&act=update' method=post><input type=checkbox name=nomore value=1 >РЈРґР°Р»РёС‚СЊ РїРѕ РёСЃС‚РµС‡РµРЅРёСЋ СЃСЂРѕРєР° <input type=submit value='РЎРѕС…СЂР°РЅРёС‚СЊ'></form></nobr></td></tr>
-<tr><th>Р¦РµРЅР°</th><td>Р‘РµР· СѓС‡С‘С‚Р° СЃРєРёРґРєРё:239.00 СЂСѓР±./РјРµСЃСЏС†<br><font color='blue'>C СѓС‡С‘С‚РѕРј</font> СЃРєРёРґРєРё:5601.20 СЂСѓР±./3 РіРѕРґР° (СЃРєРёРґРєР° 34.9%, 155.59 СЂСѓР±./РјРµСЃСЏС†)</td><td><form action='?do=services&page=discount&id=12120' method=post>РџРµСЂРёРѕРґРёС‡РЅРѕСЃС‚СЊ РѕРїР»Р°С‚С‹: <select name=periods>
-<option value='1'>222.27 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 222.27 СЂСѓР±./РјРµСЃСЏС†)</option>
-<option value='3'>633.47 СЂСѓР±./3 РјРµСЃСЏС†Р° (СЃРєРёРґРєР° 11.65%, 211.16 СЂСѓР±./РјРµСЃСЏС†)</option>
-<option value='6'>1200.26 СЂСѓР±./РїРѕР»РіРѕРґР° (СЃРєРёРґРєР° 16.3%, 200.04 СЂСѓР±./РјРµСЃСЏС†)</option>
-<option value='12'>2267.15 СЂСѓР±./РіРѕРґ (СЃРєРёРґРєР° 20.95%, 188.93 СЂСѓР±./РјРµСЃСЏС†)</option>
-<option value='24'>4000.86 СЂСѓР±./2 РіРѕРґР° (СЃРєРёРґРєР° 30.25%, 166.70 СЂСѓР±./РјРµСЃСЏС†)</option>
-<option value='36' selected>5601.20 СЂСѓР±./3 РіРѕРґР° (СЃРєРёРґРєР° 34.9%, 155.59 СЂСѓР±./РјРµСЃСЏС†)</option></select>&nbsp;<input type=submit value='РЎРјРµРЅРёС‚СЊ'></form></td></tr>
-<tr><td colspan=3>&nbsp;<sup>**</sup>РЎР»РµРґРёС‚Рµ Р·Р° Р±Р°Р»Р°РЅСЃРѕРј, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ СѓРјРµРЅСЊС€РёС‚СЊСЃСЏ РЅР° РїСЂРѕРґР»РµРЅРёРµ РґСЂСѓРіРёС… СѓСЃР»СѓРі</td></tr><tr><td colspan=3>&nbsp;</td></tr>
-<tr><th>hostname СЃРµСЂРІРµСЂР° (РґРѕРјРµРЅ)</th><td colspan=2>anton-pribora.ru</td></tr>
+<tr><th>Наименование</th><td><a class=service_url href='https://ruweb.net/vds#564' target=_blank><b>Виртуальный выделенный сервер KVMz-MICRO</b></a></td><td><form action='?do=services&page=change&id=12120' method=post>Поменять на <select name=to><option></option>
+<option value='563'>Виртуальный выделенный сервер KVMz-NANO</option>
+<option value='565'>Виртуальный выделенный сервер KVMz-MINI</option>
+<option value='566'>Виртуальный выделенный сервер KVMz-LIGHT</option>
+<option value='567'>Виртуальный выделенный сервер KVMz-MEDIUM</option>
+<option value='568'>Виртуальный выделенный сервер KVMz-STANDART</option>
+<option value='569'>Виртуальный выделенный сервер KVMz-PROF</option>
+<option value='570'>Виртуальный выделенный сервер KVMz-MEGA</option></select> <input type=submit value='Сменить'></form></td></tr>
+<tr><th>Категория</th><td colspan=2><b>Виртуальные выделенные сервера (VDS) [KVM]</b></td></tr>
+<tr><th>Добавлена</th><td>20.01.2018</td><td></td></tr>
+<tr><th>Оплачена до</th><td>20.01.2021<br>для продления услуги <a href="?do=refill&page=select&amount=2733.1">пополните баланс на 2733.09 руб.</a></td><td><nobr><form action='?do=services&page=details&id=12120&act=update' method=post><input type=checkbox name=nomore value=1 >Удалить по истечению срока <input type=submit value='Сохранить'></form></nobr></td></tr>
+<tr><th>Цена</th><td>Без учёта скидки:239.00 руб./месяц<br><font color='blue'>C учётом</font> скидки:5601.20 руб./3 года (скидка 34.9%, 155.59 руб./месяц)</td><td><form action='?do=services&page=discount&id=12120' method=post>Периодичность оплаты: <select name=periods>
+<option value='1'>222.27 руб./месяц (скидка 7%, 222.27 руб./месяц)</option>
+<option value='3'>633.47 руб./3 месяца (скидка 11.65%, 211.16 руб./месяц)</option>
+<option value='6'>1200.26 руб./полгода (скидка 16.3%, 200.04 руб./месяц)</option>
+<option value='12'>2267.15 руб./год (скидка 20.95%, 188.93 руб./месяц)</option>
+<option value='24'>4000.86 руб./2 года (скидка 30.25%, 166.70 руб./месяц)</option>
+<option value='36' selected>5601.20 руб./3 года (скидка 34.9%, 155.59 руб./месяц)</option></select>&nbsp;<input type=submit value='Сменить'></form></td></tr>
+<tr><td colspan=3>&nbsp;<sup>**</sup>Следите за балансом, который может уменьшиться на продление других услуг</td></tr><tr><td colspan=3>&nbsp;</td></tr>
+<tr><th>hostname сервера (домен)</th><td colspan=2>anton-pribora.ru</td></tr>
 <tr><th>IP</th><td colspan=2>185.221.152.228</td></tr>
 <tr><th>IPv6</th><td colspan=2></td></tr>
-<tr><th>РЁР°Р±Р»РѕРЅ</th><td colspan=2>templ-deb85-clear</td></tr>
-<tr><th>РЎРµСЂРІРµСЂ</th><td colspan=2>3020</td></tr>
-<tr><th>MAC-Р°РґСЂРµСЃ</th><td colspan=2>FA:77:F8:EC:23:55</td></tr>
-<tr><th>РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєР»СЋС‡ С‚РµС…РїРѕРґРґРµСЂР¶РєРё</th><td colspan=2></td></tr>
-</table></p><p>* РџРѕРјРµРЅСЏС‚СЊ С‚Р°СЂРёС„ РІ РјРµРЅСЊС€СѓСЋ СЃС‚РѕСЂРѕРЅСѓ РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ С‡РµСЂРµР· РѕРїРµСЂР°С†РёСЋ РїРµСЂРµС„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ</p>
-<a target=_blank href="https://kx20.deserv.net:8006">РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ Proxmox</a> (login:anton-pribora.ru РїР°СЂРѕР»СЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°, realm:Proxmox VE authentication server)<p><a href='?do=services&page=reboot&id=12120'>РџРµСЂРµР·Р°РіСЂСѓР·РёС‚СЊ VDS</a></p><p><a href='?do=services&page=details&id=12120&cmd=format'>РџРµСЂРµС„РѕСЂРјР°С‚РёСЂРѕРІР°С‚СЊ VDS</a> (Р’РѕР·РјРѕР¶РЅР° СЃРјРµРЅР° С‚Р°СЂРёС„Р° РІ РјРµРЅСЊС€СѓСЋ СЃС‚РѕСЂРѕРЅСѓ РёР»Рё РїРµСЂРµС…РѕРґ РЅР° РґСЂСѓРіСѓСЋ Р»РёРЅРµР№РєСѓ С‚Р°СЂРёС„РѕРІ)</p><p><a href=?do=services&page=select&groupid=8>Р—Р°РєР°Р·Р°С‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ IP-Р°РґСЂРµСЃ РґР»СЏ СЃРµСЂРІРµСЂР°</a></p><p><a href=?do=services&page=select&groupid=188>Р—Р°РєР°Р·Р°С‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ IP-Р°РґСЂРµСЃ СЃ Р·Р°С‰РёС‚РѕР№ РѕС‚ DDOS</a></p><p><a href=?do=services&page=select&groupid=10>Р—Р°РєР°Р·Р°С‚СЊ SSL СЃРµСЂС‚РёС„РёРєР°С‚ РґР»СЏ СЃР°Р№С‚Р°</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+<tr><th>Шаблон</th><td colspan=2>templ-deb85-clear</td></tr>
+<tr><th>Сервер</th><td colspan=2>3020</td></tr>
+<tr><th>MAC-адрес</th><td colspan=2>FA:77:F8:EC:23:55</td></tr>
+<tr><th>Установить ключ техподдержки</th><td colspan=2></td></tr>
+</table></p><p>* Поменять тариф в меньшую сторону можно только через операцию переформатирования</p>
+<a target=_blank href="https://kx20.deserv.net:8006">Панель управления Proxmox</a> (login:anton-pribora.ru пароль администратора, realm:Proxmox VE authentication server)<p><a href='?do=services&page=reboot&id=12120'>Перезагрузить VDS</a></p><p><a href='?do=services&page=details&id=12120&cmd=format'>Переформатировать VDS</a> (Возможна смена тарифа в меньшую сторону или переход на другую линейку тарифов)</p><p><a href=?do=services&page=select&groupid=8>Заказать дополнительный IP-адрес для сервера</a></p><p><a href=?do=services&page=select&groupid=188>Заказать дополнительный IP-адрес с защитой от DDOS</a></p><p><a href=?do=services&page=select&groupid=10>Заказать SSL сертификат для сайта</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

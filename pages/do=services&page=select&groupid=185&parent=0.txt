@@ -45,7 +45,7 @@ table#nodes-table{border: 0px; border-spacing: 0px; empty-cells: show;}
 function isDigit(charCode){ return (charCode >= 48 && charCode <= 57)}
 function isLat(charCode){ return ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))}
 function isRus(charCode){ return (charCode >= 1040 && charCode <= 1103)}
-function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ set
+function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=кроме set
     evt = (evt) ? evt : ((event) ? event : null);
     if (evt) {
         var charCode = (evt.charCode || evt.charCode == 0) ? evt.charCode :
@@ -59,7 +59,7 @@ function filter(evt,set,exc,x) { //set= 1 - digit 2 - lat 4 - rus; x=РєСЂРѕРјРµ 
         }
     }
 }
-var transl = {"РЃ":"YO","Р™":"I","Р¦":"TS","РЈ":"U","Рљ":"K","Р•":"E","Рќ":"N","Р“":"G","РЁ":"SH","Р©":"SCH","Р—":"Z","РҐ":"H","РЄ":"","С‘":"yo","Р№":"i","С†":"ts","Сѓ":"u","Рє":"k","Рµ":"e","РЅ":"n","Рі":"g","С€":"sh","С‰":"sch","Р·":"z","С…":"h","СЉ":"","Р¤":"F","Р«":"I","Р’":"V","Рђ":"a","Рџ":"P","Р ":"R","Рћ":"O","Р›":"L","Р”":"D","Р–":"ZH","Р­":"E","С„":"f","С‹":"i","РІ":"v","Р°":"a","Рї":"p","СЂ":"r","Рѕ":"o","Р»":"l","Рґ":"d","Р¶":"zh","СЌ":"e","РЇ":"Ya","Р§":"CH","РЎ":"S","Рњ":"M","Р":"I","Рў":"T","Р¬":"","Р‘":"B","Р®":"YU","СЏ":"ya","С‡":"ch","СЃ":"s","Рј":"m","Рё":"i","С‚":"t","СЊ":"","Р±":"b","СЋ":"yu"};
+var transl = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"","б":"b","ю":"yu"};
 function Lat(text){
     var result="";
     for(i=0;i<text.length;i++) {
@@ -148,90 +148,90 @@ function goURL(page,noselect){
 
 <table border=0 cellspacing=5>
 
-<tr><td align=center><b>РђРєРєР°СѓРЅС‚ #28071</a></b></td>
- <td align=center><a href="?do=profile">РџСЂРѕС„РёР»СЊ</a></td>
- <td rowspan=3 class=centr><a href="?do=domains"><big>Р”РѕРјРµРЅС‹</big></a></td>
- <td rowspan=3 class=centr><a href="?do=sites"><big>РЎР°Р№С‚С‹</big></a></td>
+<tr><td align=center><b>Аккаунт #28071</a></b></td>
+ <td align=center><a href="?do=profile">Профиль</a></td>
+ <td rowspan=3 class=centr><a href="?do=domains"><big>Домены</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=sites"><big>Сайты</big></a></td>
  <td rowspan=3 class=centr><a href="?do=vds"><big>VDS</big></a></td>
  <td rowspan=3 class=centr><a href="?do=services&page=select&groupid=10"><big>SSL</big></a></td>
- <td rowspan=3 class=centr><a href="?do=services"><big>Р”СЂСѓРіРёРµ СѓСЃР»СѓРіРё</big></a></td>
- <td align=center><a href="?do=support"><big>РџРѕРґРґРµСЂР¶РєР°</big></a></td>
- <td align=center><a href="?do=logout"><big>Р’С‹С…РѕРґ</big></a></td>
+ <td rowspan=3 class=centr><a href="?do=services"><big>Другие услуги</big></a></td>
+ <td align=center><a href="?do=support"><big>Поддержка</big></a></td>
+ <td align=center><a href="?do=logout"><big>Выход</big></a></td>
 
 
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=balance">Р‘Р°Р»Р°РЅСЃ <b>2868.11 СЂСѓР±.</b></a></td>
- <td align=center><a href="?do=newsletter">РќРѕРІРѕСЃС‚Рё</a></td>
- <td align=center><a href="?do=part">РџР°СЂС‚РЅС‘СЂСЃРєР°СЏ РїСЂРѕРіСЂР°РјРјР°</a></td>
+ <td align=center><a href="?do=balance">Баланс <b>2868.11 руб.</b></a></td>
+ <td align=center><a href="?do=newsletter">Новости</a></td>
+ <td align=center><a href="?do=part">Партнёрская программа</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 <tr>
- <td align=center><a href="?do=history">РСЃС‚РѕСЂРёСЏ РѕРїРµСЂР°С†РёР№</a></td>
- <td align=center><a href="?do=docs">Р”РѕРєСѓРјРµРЅС‚С‹</a></td>
- <td align=center><a href="?do=promo">РџСЂРѕРјРѕР°РєС†РёРё</a></td>
+ <td align=center><a href="?do=history">История операций</a></td>
+ <td align=center><a href="?do=docs">Документы</a></td>
+ <td align=center><a href="?do=promo">Промоакции</a></td>
  <td align=center>&nbsp;</td>
 
 </tr>
 
 
-</table><hr><h5>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Рµ РІС‹РґРµР»РµРЅРЅС‹Рµ СЃРµСЂРІРµСЂР° (VDS) [KVM]</h5>
+</table><hr><h5>Виртуальные выделенные сервера (VDS) [KVM]</h5>
 <form method=get>
 <input type=hidden name=do value='services'>
 <input type=hidden name=page value='select2'>
 
-<table border=1><tr><th>&nbsp;</th><th>РќР°РёРјРµРЅРѕРІР°РЅРёРµ</th><th>Р¦РµРЅР°</th><th> </th></tr><tr >
+<table border=1><tr><th>&nbsp;</th><th>Наименование</th><th>Цена</th><th> </th></tr><tr >
 <td><input type=radio name=typeid value='563'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#563' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-NANO</a></td>
-<td>157.17 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 157.17 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#563' target=_blank>Виртуальный выделенный сервер KVMz-NANO</a></td>
+<td>157.17 руб./месяц (скидка 7%, 157.17 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='564'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#564' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MICRO</a></td>
-<td>222.27 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 222.27 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#564' target=_blank>Виртуальный выделенный сервер KVMz-MICRO</a></td>
+<td>222.27 руб./месяц (скидка 7%, 222.27 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='565'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#565' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MINI</a></td>
-<td>445.47 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 445.47 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#565' target=_blank>Виртуальный выделенный сервер KVMz-MINI</a></td>
+<td>445.47 руб./месяц (скидка 7%, 445.47 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='566'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#566' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-LIGHT</a></td>
-<td>789.57 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 789.57 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#566' target=_blank>Виртуальный выделенный сервер KVMz-LIGHT</a></td>
+<td>789.57 руб./месяц (скидка 7%, 789.57 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='567'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#567' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MEDIUM</a></td>
-<td>1115.07 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 1115.07 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#567' target=_blank>Виртуальный выделенный сервер KVMz-MEDIUM</a></td>
+<td>1115.07 руб./месяц (скидка 7%, 1115.07 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='568'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#568' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-STANDART</a></td>
-<td>1673.07 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 1673.07 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#568' target=_blank>Виртуальный выделенный сервер KVMz-STANDART</a></td>
+<td>1673.07 руб./месяц (скидка 7%, 1673.07 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='569'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#569' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-PROF</a></td>
-<td>2231.07 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 2231.07 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#569' target=_blank>Виртуальный выделенный сервер KVMz-PROF</a></td>
+<td>2231.07 руб./месяц (скидка 7%, 2231.07 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='570'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#570' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMz-MEGA</a></td>
-<td>3347.07 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 3347.07 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#570' target=_blank>Виртуальный выделенный сервер KVMz-MEGA</a></td>
+<td>3347.07 руб./месяц (скидка 7%, 3347.07 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='599'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#599' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMx-MICRO</a></td>
-<td>222.27 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 222.27 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#599' target=_blank>Виртуальный выделенный сервер KVMx-MICRO</a></td>
+<td>222.27 руб./месяц (скидка 7%, 222.27 руб./месяц)</td>
 <td> </td>
 </tr><tr >
 <td><input type=radio name=typeid value='600'></td>
-<td ><a class=service_url href='https://ruweb.net/vds#600' target=_blank>Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РІС‹РґРµР»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ KVMx-MINI</a></td>
-<td>445.47 СЂСѓР±./РјРµСЃСЏС† (СЃРєРёРґРєР° 7%, 445.47 СЂСѓР±./РјРµСЃСЏС†)</td>
+<td ><a class=service_url href='https://ruweb.net/vds#600' target=_blank>Виртуальный выделенный сервер KVMx-MINI</a></td>
+<td>445.47 руб./месяц (скидка 7%, 445.47 руб./месяц)</td>
 <td> </td>
-</tr></table><p><input type=submit value="Р—Р°РєР°Р·Р°С‚СЊ"></p></form><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ&nbsp;Р·Р°&nbsp;0&nbsp;СЃРµРє.</small><br>Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Р•СЃР»Рё Сѓ Р’Р°СЃ РІРѕР·РЅРёРєР»Рё РІРѕРїСЂРѕСЃС‹ РёР»Рё Р’С‹ Р·Р°РјРµС‚РёР»Рё РѕС€РёР±РєСѓ РІ СЂР°Р±РѕС‚Рµ Р±РёР»Р»РёРЅРі-СЃРёСЃС‚РµРјС‹ РїРёС€РёС‚Рµ РёС… РІ РЅР°С€РµР№ <a href="https://ruweb.net/support/">С‚РёРєРµС‚-СЃРёСЃС‚РµРјРµ</a> (С‚РµС…РїРѕРґРґРµСЂР¶РєР°) РёР»Рё <a href="mailto:support@ruweb.net">РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РїРѕС‡С‚Сѓ</a></i><br>Р—Р°РєР°Р¶РёС‚Рµ <a href="?do=freecall">Р±РµСЃРїР»Р°С‚РЅС‹Р№ Р·РІРѕРЅРѕРє</a> РЅР°С€РµРіРѕ РєРѕРЅСЃСѓР»СЊС‚Р°РЅС‚Р°</td></tr></table>
+</tr></table><p><input type=submit value="Заказать"></p></form><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

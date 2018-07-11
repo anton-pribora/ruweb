@@ -1,5 +1,7 @@
 <?php 
 
+// charset cp1251
+
 namespace {
     use somenamespace\Layout;
                 
@@ -27,7 +29,7 @@ namespace somenamespace {
         
         public function prop($name, $default = NULL)
         {
-            return $this->props[$name] ?? $default;
+            return isset($this->props[$name]) ? $this->props[$name] : $default;
         }
         
         public function setProp($name, $value)
@@ -82,7 +84,7 @@ namespace somenamespace {
         
         public function getVar($name, $default = NULL)
         {
-            return $this->variables[$name] ?? $default;
+            return isset($this->variables[$name]) ? $this->variables[$name] : $default;
         }
         
         public function addMenu($path, array $params) 
@@ -177,21 +179,20 @@ namespace somenamespace {
         }
         
         private function tryToFancyOldCode ($text) {
-            $text = preg_replace_callback('~<script[\w\W]*</script>~Uui', function($matches) {
+            $text = preg_replace_callback('~<script[\w\W]*</script>~Ui', function($matches) {
                 $this->variables['headTags'][] = $matches[0];
                 return '';
             }, $text);
             
-            $text = preg_replace('~<html>[\s\S]+</head>~Uui', '', $text);
+            $text = preg_replace('~<html>[\s\S]+</head>~Ui', '', $text);
             $text = preg_replace('~</?body[^>]*>~i', '', $text);
             $text = preg_replace('~</?basefont[^>]*>~i', '', $text);
             $text = preg_replace('~<style> td.centr \{vertical-align:middle; padding: 4px 4px\}</style>~i', '', $text);
-            $text = preg_replace('~<hr><table border=0 cellspacing=0 width=100%><tr><td>RuBill v0.83<br><small>РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ[\s\S]+~', '', $text);
+            $text = preg_replace('~<hr><table border=0 cellspacing=0 width=100%><tr><td>RuBill v0.83<br><small>[\s\S]+~', '', $text);
             $text = preg_replace('~<table border=0 cellspacing=5>[\w\W]+</table><hr>~Ui', '', $text);
             $text = preg_replace('~<p></p>~Ui', '', $text);
-            $text = preg_replace('~<hr><table[\s\S]*?</table>~Uui', '', $text);
-            $text = preg_replace('~<img src=(img[/\w\.-]+)~ui', '<img src="https://ruweb.net/billing/\\1"', $text);
-            
+            $text = preg_replace('~<hr><table[\s\S]*?</table>~Ui', '', $text);
+            $text = preg_replace('~<img src=(img[/\w\.-]+)~i', '<img src="https://ruweb.net/billing/\\1"', $text);
             $text = preg_replace_callback('~<table[\s\S]+>~Ui', function($matches) {
                 return '<table class="table table-sm">';
             }, $text);
@@ -200,7 +201,6 @@ namespace somenamespace {
             $text = trim($text);
             
             return $text;
-//             return '<pre>' . htmlentities($text) .'</pre>';
         }
         
         public function render($content, $fancy = TRUE) 
@@ -328,13 +328,13 @@ if ($leftMenu) {?>
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="?action=news">РќРѕРІРѕСЃС‚Рё</a></li>
-                <li class="list-inline-item"><a href="#">РўР°СЂРёС„С‹</a></li>
-                <li class="list-inline-item"><a href="#">Рћ РєРѕРјРїР°РЅРёРё</a></li>
-                <li class="list-inline-item"><a href="#">РРЅС„РѕСЂРјР°С†РёСЏ</a></li>
-                <li class="list-inline-item"><a href="#">РџРѕР»РёС‚РёРєР° РєРѕРЅС„РµРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё</a></li>
+                <li class="list-inline-item"><a href="?action=news">Новости</a></li>
+                <li class="list-inline-item"><a href="#">Тарифы</a></li>
+                <li class="list-inline-item"><a href="#">О компании</a></li>
+                <li class="list-inline-item"><a href="#">Информация</a></li>
+                <li class="list-inline-item"><a href="#">Политика конфеденциальности</a></li>
             </ul>
-            <p class="copyright">Ruweb.net В© 2018</p>
+            <p class="copyright">Ruweb.net © 2018</p>
         </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -344,7 +344,7 @@ if ($leftMenu) {?>
 </body>
 
 </html>
-<?php 
+<?php
         }
     }
 }
