@@ -108,7 +108,7 @@ namespace somenamespace {
             $result = ['<' . $menu->tag()];
             
             foreach ($attributes as $name => $value) {
-                $result[] = sprintf(' %s="%s"', htmlentities($name, ENT_QUOTES, 'utf-8'), htmlentities($value, ENT_QUOTES, 'utf-8'));
+                $result[] = sprintf(' %s="%s"', htmlentities($name, ENT_QUOTES, 'cp1251'), htmlentities($value, ENT_QUOTES, 'cp1251'));
             }
             
             $result[] = '>';
@@ -211,7 +211,7 @@ namespace somenamespace {
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="cp1251">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $this->getVar('title', 'Ruweb Billing')?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.1.1/sandstone/bootstrap.min.css">
@@ -229,6 +229,9 @@ namespace somenamespace {
                     <li class="nav-item" role="presentation"><?=$this->menuLink('/services/', 'nav-link')?></li>
                     <li class="nav-item" role="presentation"><?=$this->menuLink('/news/', 'nav-link')?></li>
                     <li class="nav-item" role="presentation"><?=$this->menuLink('/support/', 'nav-link')?></li>
+<?php foreach ($this->findMenuItemsByPath('~^/topmenu/~') as $path => $menuItem) {?>
+                    <li class="nav-item" role="presentation"><?=$this->menuLink($path, 'nav-link')?></li>
+<?php }?>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown">
@@ -326,16 +329,7 @@ if ($leftMenu) {?>
         <hr>
     </div>
     <div class="footer-basic">
-        <footer>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="?action=news">Новости</a></li>
-                <li class="list-inline-item"><a href="#">Тарифы</a></li>
-                <li class="list-inline-item"><a href="#">О компании</a></li>
-                <li class="list-inline-item"><a href="#">Информация</a></li>
-                <li class="list-inline-item"><a href="#">Политика конфеденциальности</a></li>
-            </ul>
-            <p class="copyright">Ruweb.net © 2018</p>
-        </footer>
+<?php include(__DIR__ . '/footer.php');?>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>

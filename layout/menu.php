@@ -11,6 +11,16 @@ $layout->addMenu('/services/vds/'    , ['text' => 'VDS', 'href' => '?do=vds']);
 $layout->addMenu('/services/ssl/'    , ['text' => 'SSL', 'href' => '?do=services&page=select&groupid=10']);
 $layout->addMenu('/services/other/'  , ['text' => 'Другие услуги', 'href' => '?do=services']);
 
+// Доп. меню
+// Меню добавляется по префиксу /topmenu/
+// В качестве дополнительных параметров можно использовать любые аттрибуты html, 
+// они просто добавляются в тэг.
+$layout->addMenu('/topmenu/menu1/', ['text' => 'Неподтверждённые заявки (1)', 'href' => '?do=something', 'class' => 'text-danger']);
+$layout->addMenu('/topmenu/menu2/', ['text' => 'Выполните активацию аккаунта <b class="text-danger">(!)</b>', 'href' => '?do=something']);
+
+// Доп. меню без ссылки
+$layout->addMenu('/topmenu/menu3/', ['text' => 'Hello', 'onclick' => 'alert("hello")', 'style' => 'cursor: pointer', 'title' => 'Нажми на меня']);
+
 $layout->addMenu('/services/vds/orders/'  , ['text' => 'Мои VDS', 'href' => '?do=vds']);
 $layout->addMenu('/services/vds/new/'     , ['text' => 'Добавить VDS', 'href' => '?do=services&page=select&groupid=185&parent=0']);
 $layout->addMenu('/services/vds/settings/', ['text' => 'Настройки', 'href' => '?do=vdsconfig']);
