@@ -179,111 +179,46 @@ function goURL(page,noselect){
 </tr>
 
 
-</table><hr><h5>Ваши домены</h5>
-<form><input type=hidden name=do value=adddomain>
-Заявка на регистрацию домена: <input name=domain>&nbsp;<b>.</b>&nbsp;<select name=ext>
-<option>alldomains</option>
-<option>audio</option>
-<option>be</option>
-<option>biz</option>
-<option>bz</option>
-<option>cafe</option>
-<option>cat</option>
-<option>cc</option>
-<option>center</option>
-<option>chat</option>
-<option>city</option>
-<option>click</option>
-<option>club</option>
-<option>co</option>
-<option>co.uk</option>
-<option>com</option>
-<option>com.ru</option>
-<option>company</option>
-<option>de</option>
-<option>email</option>
-<option>fail</option>
-<option>fun</option>
-<option>gift</option>
-<option>guru</option>
-<option>help</option>
-<option>in</option>
-<option>info</option>
-<option>jp</option>
-<option>kz</option>
-<option>lc</option>
-<option>link</option>
-<option>live</option>
-<option>lol</option>
-<option>market</option>
-<option>marketing</option>
-<option>me</option>
-<option>mobi</option>
-<option>money</option>
-<option>moscow</option>
-<option>msk.ru</option>
-<option>msk.su</option>
-<option>name</option>
-<option>net</option>
-<option>net.ru</option>
-<option>nov.ru</option>
-<option>nov.su</option>
-<option>one</option>
-<option>online</option>
-<option>ooo</option>
-<option>org</option>
-<option>org.ru</option>
-<option>org.uk</option>
-<option>pet</option>
-<option>pl</option>
-<option>pp.ru</option>
-<option>pro</option>
-<option>promo</option>
-<option>pw</option>
-<option>rent</option>
-<option>rocks</option>
-<option selected><b>ru</b></option>
-<option>ru.com</option>
-<option>ru.net</option>
-<option>run</option>
-<option>sexy</option>
-<option>shop</option>
-<option>site</option>
-<option>so</option>
-<option>space</option>
-<option>spb.ru</option>
-<option>spb.su</option>
-<option>store</option>
-<option>su</option>
-<option>tech</option>
-<option>tel</option>
-<option>tk</option>
-<option>today</option>
-<option>top</option>
-<option>tv</option>
-<option>us</option>
-<option>vet</option>
-<option>video</option>
-<option>vip</option>
-<option>vladimir.ru</option>
-<option>website</option>
-<option>win</option>
-<option>work</option>
-<option>world</option>
-<option>ws</option>
-<option>xyz</option>
-<option>дети</option>
-<option>москва</option>
-<option>онлайн</option>
-<option>ру</option>
-<option>рус</option>
-<option><b>рф</b></option>
-</select> проверить на занятость<sup>*</sup> <input type=checkbox name=checkwhois value=1 checked> <input type=submit value="Добавить"></form><p><i><sup>*</sup>автоматическая проверка ведётся для зон RU и РФ. Остальные домены проверяйте на занятость перед заказом на нашем сайте и сайтах официальных регистраторов. <font color=red>НЕ ПОЛЬЗУЙТЕСЬ</font> случайными сайтами при проверке домена на занятость - это потенциальный источник утечки информации о заказе Вашего домена</i></p>
-<form><input type=hidden name=do value=transdomain>
-Заявка на перенос домена: <input name=domain> <input type=submit value="Отправить"></form><p>При переносе больше десяти доменов RU или РФ даём дополнительные скидки - пишите в <a href=?do=support>техподдержку</a> для получения консультации.</p><p> Если нашли продление доменов дешевле чем у нас - <a href=?do=support>напишите нам</a> и финансовый отдел с удовольствием рассмотрит Ваше предложение</p><p>Сменить DNS домена можно в панели управления доменом по ссылке <b>Управление</b></p>
-<p>Заявку на продление домена можно сформировать по ссылке <b>Продлить</b> напротив необходимого домена.</p>
-<p>Для включения(или выключения) автоматического продление домена пройдите по ссылке <b>Продлить</b> напротив необходимого домена. За 50 дней до даты окончания срока делегирования домена биллинг пришлёт напоминание об установленном автопродлении, а затем за 45 дней до окончания срока действия сформирует заявку на продление, если на счету аккаунта достаточно средств для продления домена</p><p><a href=?do=changeviewdomain>Скрыть отдельные категории доменов</a></p><p><table border=1><tr><th><a href='?do=domains&sort=1'>Домен</a></th><th><a href='?do=domains&sort=2'>Регистратор</a></th><th>Цена продления</th><th><a href='?do=domains&sort=3'>Оплачен до</a></th><th>Автопродление</th></tr>
-<tr>
-<td><a href='http://vot-takoy-domen.com.ru' target=_blank>vot-takoy-domen.com.ru</a></td><td>Ру-Центр</td><td>185.00 руб./год</td><td>19.01.2038</td><td><a href='?do=transdomain&domain=vot-takoy-domen.com.ru&domainid=41308'>перенести</a> <font style=color:blue>на наш договор</font></td><td>&nbsp;</td><td>&nbsp;</td></tr>
-</table></p><p>Суммарная стоимость продления доменов в списке:185.00 руб.</p><p>Бонусов на бесплатную регистрацию/продление домена в зоне RU нет. Вы можете принять участие <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target="_blank">в нашей бонусной программе по регистрации/продлению домена бесплатно</a>.</p>
-<p><a href="http://forum.ruweb.net/viewthread.php?tid=2189" target="_blank">Перенос доменов к нам на обслуживание и продление</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=330>RuBill v0.84 <a href="?do=newstyle">новый дизайн</a><br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a>&nbsp;Москва: (499) <a href="tel:+74995024431">502-44-31</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>
+</table><hr><style>
+td  {vertical-align:middle}
+th  {text-align:right}
+.t  {vertical-align:top}
+</style>
+<h5>Параметры хостинг-аккаунта #21736 (@host0.ruweb.net)</h5>
+<p><a href=?do=services&page=select&groupid=8>Заказать дополнительный IP-адрес для хостинга</a></p><p><a href=?do=services&page=select&groupid=10>Заказать SSL сертификат для хостинга, установка бесплатно</a></p><p><table border=1><tr><th>Доменное имя</th><td class=c><a href='http://vot-takoy-sayt.ru'>vot-takoy-sayt.ru</a></td><td>
+
+<form action='?do=chdom&siteid=21736' method=post>Новое имя: <input name=new>&nbsp;<input type=submit value='Сменить'></form></td></tr>
+<tr><th>Размещение</th><td class=c><a href='?do=servers&servid=0'>cервер #0</a></td><td></td></tr><tr><th>Тарифный план</th><td class=c><a href=javascript:ChoosePlan(null,'FERRUM-VIP')>FERRUM-VIP</a></td><td>
+<form name=chplan><input type=hidden name=do value=chplan><input type=hidden name=siteid value=21736>Новый тарифный план<sup>1</sup>: <input name=plan><input type=button onClick='ChoosePlan(document.forms.chplan.elements.plan,"FERRUM-VIP")' value='Выбрать новый тариф'>&nbsp;<input type=submit value='Сменить'></form></td></tr><tr><th>Цена</th><td class=c><nobr>289.00 руб./мес</nobr></td><td></td></tr>
+<tr><th>Оплачен до</th><td class=c >07.08.2028</td><td>
+<form><input type=hidden name=do value=prolong><input type=hidden name=siteid value=21736>Кол-во месяцев: <input name=period size=4>&nbsp;<input type=submit value='Продлить'><br>Участвуйте в <a href="http://forum.ruweb.net/viewthread.php?tid=2703" target=_blank>в акции</a> , сделав продление хостинга на сумму не менее 1500.00 руб.<br>и получите бонус на регистрацию или продление домена в зоне RU <font color=green>бесплатно</font> <input type=checkbox name=free_ru_bonus></form></td></tr><tr><th>Создан</th><td class=c>07.08.2018</td><td> </td></tr>
+<tr><th>Состояние</th><td class=c >включен</td><td><a href='?do=suspend&siteid=21736'>Приостановить</a> <a href='?do=delete&siteid=21736'>Удалить</a></td></tr><tr><th valign=top width=140>Название и краткое описание сайта<br><font style="font-weight:normal">(для опубликования в <a href="//ruweb.net/?page=clients" target=_blank style="font-weight:normal">списке клиентов</a>)</font></th>
+<td colspan=2><form action=?do=sitedesc&siteid=21736 method=post><input name=title maxlength=80 size=60 value="">&nbsp;<input type=submit value="Сохранить"><br>
+<textarea name=desc cols=53 rows=3 onKeyPress="maxLen(event,this,255)"></textarea>
+</form><form action=?do=chrazdel&siteid=21736 method=post>добавлять приставку www <input type=checkbox name=www value=1> убрать email <input type=checkbox name=nomail value=1><br>
+Раздел:<select name=razdelid>
+<option value='8'>.       Авто/мото</option>
+<option value='9'>.       .       Автошколы</option>
+<option value='21'>.       Вокруг света</option>
+<option value='22'>.       Государство Российское</option>
+<option value='10'>.       Деловой мир</option>
+<option value='25'>.       .       Торговля</option>
+<option value='26'>.       .       Электронная коммерция</option>
+<option value='11'>.       Домашний очаг</option>
+<option value='27'>.       .       Братья меньшие</option>
+<option value='2'>.       Интернет</option>
+<option value='7'>.       .       Общение</option>
+<option value='24'>.       .       Персональные страницы</option>
+<option value='6'>.       .       Хостинг</option>
+<option value='12'>.       Карьера/работа</option>
+<option value='13'>.       Компьютеры</option>
+<option value='23'>.       .       Софт</option>
+<option value='14'>.       Культура/Искусство</option>
+<option value='15'>.       Наука/Техника/Образование</option>
+<option value='1'>.       Общий раздел</option>
+<option value='16'>.       Отдых</option>
+<option value='3'>.       Предприятия</option>
+<option value='17'>.       СМИ</option>
+<option value='18'>.       Спорт</option>
+<option value='19'>.       Справки</option>
+<option value='20'>.       Юмор</option></select>&nbsp;<input type=submit value="Установить"></form></td></tr></table></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=330>RuBill v0.84 <a href="?do=newstyle">новый дизайн</a><br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a>&nbsp;Москва: (499) <a href="tel:+74995024431">502-44-31</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

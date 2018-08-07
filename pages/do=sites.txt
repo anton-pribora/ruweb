@@ -179,5 +179,14 @@ function goURL(page,noselect){
 </tr>
 
 
-</table><hr><h5>Ваши сайты</h5>[Cайтов нет]<br><a href="?do=siteconfig">Настройки обслуживания сайтов</a></p>
-<p><a href="?do=addsite">Добавить новый сайт</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=200>RuBill v0.84<br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>
+</table><hr><h5>Ваши сайты</h5><p>Для продления сайта, его удаления, смены тарифного плана и внесения пр. изменений, перейдите по ссылке "Подробно" рядом с именем сайта.
+<br><br><a href=?do=services&page=select&groupid=10>Заказать SSL сертификат для сайта</a><br><br><table border=1><tr><th><a href="?do=sites&sort=2">#</a></th><th>Хостинг-аккаунт</th><th><a href="?do=sites&sort=1">Домен</a></th><th>Тарифный план</th><th>Цена</th><th><a href="?do=sites&sort=3">Оплачен до</a></th><th>Состояние</th><th></th></tr><tr onMouseOver="style.backgroundColor='#EAEAEA'; style.cursor='hand';" onMouseOut="style.backgroundColor='';" onClick=goURL('?do=manage&siteid=21736',1)>
+    <td align=right><a href='?do=manage&siteid=21736'>21736</a></td>
+    <td align=right>???@host0.ruweb.net</td>
+    <td><a href='http://vot-takoy-sayt.ru'>vot-takoy-sayt.ru</a></td>
+    <td><a href=javascript:ChoosePlan(null,'FERRUM-VIP')>FERRUM-VIP</a></td>
+    <td align=right><nobr>289.00 руб.</nobr>/мес</nobr></td>
+    <td>07.08.2028</td>
+    <td >включен</td>
+    <td><a href='?do=manage&siteid=21736'>подробно</a></td></nobr></tr></table></p><p>Суммарная стоимость хостинга в списке:289.00 руб./мес.</p><a href="?do=siteconfig">Настройки обслуживания сайтов</a></p>
+<p><a href="?do=addsite">Добавить новый сайт</a></p><p></p><hr><table border=0 cellspacing=0 width=100%><tr><td width=330>RuBill v0.84 <a href="?do=newstyle">новый дизайн</a><br><small>Сгенерировано&nbsp;за&nbsp;0&nbsp;сек.</small><br>Екатеринбург: (343) <a href="tel:+73432047116">204-71-16</a>&nbsp;Москва: (499) <a href="tel:+74995024431">502-44-31</a></td><td align=right><i>Если у Вас возникли вопросы или Вы заметили ошибку в работе биллинг-системы пишите их в нашей <a href="https://ruweb.net/support/">тикет-системе</a> (техподдержка) или <a href="mailto:support@ruweb.net">на электронную почту</a></i><br>Закажите <a href="?do=freecall">бесплатный звонок</a> нашего консультанта</td></tr></table>

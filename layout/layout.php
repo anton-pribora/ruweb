@@ -295,7 +295,7 @@ if ($leftMenu) {?>
 <?php }?>
                 </ol>
 <?php }?>
-              <div style="min-height: 80vh">
+              <div style="min-height: 70vh">
 <?php if ($pageNavs) {?>
                 <ul class="nav nav-tabs">
 <?php foreach ($pageNavs as $path => $menuItem) { ?>
@@ -312,7 +312,7 @@ if ($leftMenu) {?>
             </div>
         </div>
 <?php } else {?>
-        <div style="min-height: 80vh" class="mt-3">
+        <div style="min-height: 70vh" class="mt-3">
 <?php if ($this->getVar('crumbs')) {?>
                 <ol class="breadcrumb">
 <?php foreach ($this->getVar('crumbs') as $value) {?>
