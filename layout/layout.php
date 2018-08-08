@@ -27,6 +27,11 @@ namespace somenamespace {
             $this->props = $props;
         }
         
+        public function path()
+        {
+            return $this->path;
+        }
+        
         public function prop($name, $default = NULL)
         {
             return isset($this->props[$name]) ? $this->props[$name] : $default;
@@ -45,6 +50,7 @@ namespace somenamespace {
             unset($result['tag']);
             unset($result['text']);
             unset($result['extra']);
+            unset($result['dropdown']);
             
             return $result;
         }
@@ -68,6 +74,17 @@ namespace somenamespace {
         {
             return $this->prop('tag', 'a');
         }
+        
+        public function dropdown()
+        {
+            return boolval($this->prop('dropdown'));
+        }
+        
+        public function setDropdown($value)
+        {
+            $this->setProp('dropdown', $value);
+            return $this;
+        }
     }
     
     class Layout 
@@ -76,6 +93,9 @@ namespace somenamespace {
         private $variables = [
             'headTags' => [],
         ];
+        
+        private $leftMenu = [];
+        private $navs = [];
         
         public function setVar($name, $value)
         {
@@ -87,9 +107,12 @@ namespace somenamespace {
             return isset($this->variables[$name]) ? $this->variables[$name] : $default;
         }
         
+        /**
+         * @return \somenamespace\MenuItem
+         */
         public function addMenu($path, array $params) 
         {
-            $this->menu[$path] = new MenuItem($path, $params);
+            return $this->menu[$path] = new MenuItem($path, $params);
         }
         
         public function menuLink($path, $class = '')
@@ -116,6 +139,43 @@ namespace somenamespace {
             $result[] = '</' . $menu->tag() . '>';
             
             return join($result);
+        }
+        
+        public function writeTopMenuItem(MenuItem $item)
+        {
+            if ($item->dropdown()) {
+                echo "<li class=\"dropdown\">\n";
+                echo "<a class=\"dropdown-toggle nav-link dropdown-toggle ", $item->active() ? 'active' : '', "\" data-toggle=\"dropdown\" href=\"\">", $item->text(), ' ', $item->extra(), "</a>\n";
+                echo "<div class=\"dropdown-menu\" role=\"menu\">\n";
+                
+                foreach ($this->findMenuItemsByPath('~^' . $item->path() . '[^/]+/$~') as $path => $menuItem) {
+                    if ($menuItem->text() == '--') {
+                        echo "<div class=\"dropdown-divider\" role=\"presentation\"></div>\n";
+                    } else {
+                        echo $this->menuLink($path, 'dropdown-item');
+                    }
+                }
+                
+                echo "</div>\n";
+                echo "</li>\n"; 
+            } else {
+                echo "<li class=\"nav-item\" role=\"presentation\">", $this->menuLink($item->path(), 'nav-link'), "</li>";
+            }
+        }
+        
+        public function writeTopMenuItems(array $items, $class = '')
+        {
+            if (!$items) {
+                return ;
+            }
+            
+            echo "<ul class=\"$class\">\n";
+            
+            foreach ($items as $item) {
+                $this->writeTopMenuItem($item);
+            }
+            
+            echo "</ul>\n";
         }
         
         public function menuProp($path, $prop, $default = NULL)
@@ -203,13 +263,11 @@ namespace somenamespace {
             return $text;
         }
         
-        public function render($content, $fancy = TRUE) 
+        private function writeBegin()
         {
-            $fancyContent = $fancy ? $this->tryToFancyOldCode($content) : $content;
 ?>
 <!DOCTYPE html>
-<html>
-
+<html lang="ru">
 <head>
     <meta charset="cp1251">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,114 +275,32 @@ namespace somenamespace {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.1.1/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700">
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
-    <style type="text/css"><?php readfile(__DIR__ . '/style.css');?></style>
+    <style><?php readfile(__DIR__ . '/style.css');?></style>
     <?php echo join("\n    ", $this->variables['headTags']);?> 
 </head>
-
 <body>
-    <nav class="navbar navbar-light navbar-expand-md bg-light">
-        <div class="container"><a class="navbar-brand" href="<?php echo $this->getVar('homelink', '/')?>"><img src="https://ruweb.net/imgs/logo.png" height="32"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item" role="presentation"><?=$this->menuLink('/services/', 'nav-link')?></li>
-                    <li class="nav-item" role="presentation"><?=$this->menuLink('/news/', 'nav-link')?></li>
-                    <li class="nav-item" role="presentation"><?=$this->menuLink('/support/', 'nav-link')?></li>
-<?php foreach ($this->findMenuItemsByPath('~^/topmenu/~') as $path => $menuItem) {?>
-                    <li class="nav-item" role="presentation"><?=$this->menuLink($path, 'nav-link')?></li>
-<?php }?>
-                </ul>
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle nav-link dropdown-toggle <?=$this->menu['/money/']->active() ? 'active' : ''?>" data-toggle="dropdown" href=""><?php echo $this->menu['/money/']->text() . ' ' . $this->menu['/money/']->extra();?></a>
-                        <div class="dropdown-menu" role="menu">
-<?php foreach ($this->findMenuItemsByPath('~^/money/[^/]+/$~') as $path => $menuItem) {?>
-                          <?=$this->menuLink($path, 'dropdown-item');?> 
-<?php }?>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle nav-link dropdown-toggle <?=$this->menu['/account/']->active() ? 'active' : ''?>" data-toggle="dropdown" href=""><?php echo $this->menu['/account/']->text();?></a>
-                        <div class="dropdown-menu" role="menu">
-<?php foreach ($this->findMenuItemsByPath('~^/account/[^/]+/$~') as $path => $menuItem) {?>
-                          <?=$this->menuLink($path, 'dropdown-item');?> 
-<?php }?>
-                          <div class="dropdown-divider" role="presentation"></div>
-                          <?=$this->menuLink('/logout/', 'dropdown-item');?> 
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <div class="container">
 <?php 
-
-$leftMenu = [];
-
-foreach ($this->findMenuItemsByPath('~^/[^/]+/$~') as $path => $menuItem) {
-    if ($menuItem->active()) {
-        $leftMenu = $this->findMenuItemsByPath("~^{$path}[^/]+/\$~");
-        break;
-    }
-}
-
-$pageNavs = [];
-
-foreach ($leftMenu as $path => $menuItem) {
-    if ($menuItem->active()) {
-        $pageNavs = $this->findMenuItemsByPath("~^{$path}[^/]+/\$~");
-        break;
-    }
-}
-
-if ($leftMenu) {?>
-        <div class="row">
-            <div class="col-md-4 col-xl-3 offset-xl-0 mt-3">
-                <div class="list-group mb-3 mb-md-0">
-<?php foreach ($leftMenu as $path => $menuItem) {?>
-                    <?php echo $this->menuLink($path, 'list-group-item list-group-item-action');?>
-<?php }?>
-                </div>
-            </div>
-            <div class="col-md-8 col-xl-9 mt-3">
-<?php if ($this->getVar('crumbs')) {?>
-                <ol class="breadcrumb">
-<?php foreach ($this->getVar('crumbs') as $value) {?>
-                    <li class="breadcrumb-item"><?php echo $value?></li>
-<?php }?>
-                </ol>
-<?php }?>
-              <div style="min-height: 70vh">
-<?php if ($pageNavs) {?>
-                <ul class="nav nav-tabs">
-<?php foreach ($pageNavs as $path => $menuItem) { ?>
-                  <li class="nav-item"><?php echo $this->menuLink($path, 'nav-link')?></li>
-<?php } ?>
-                </ul>
-                <div class="py-4">
-                  <?=$fancyContent?>
-                </div>
-<?php } else { ?>
-              <?=$fancyContent?>
-<?php } ?>
-              </div>
-            </div>
+        }
+        
+        private function writeNavigation()
+        {
+?>
+<nav class="navbar navbar-light navbar-expand-md bg-light">
+    <div class="container"><a class="navbar-brand" href="<?php echo $this->getVar('homelink', '/')?>"><img alt="ruweb.net" src="https://ruweb.net/imgs/logo.png" height="32"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+<?php 
+            $this->writeTopMenuItems($this->findMenuItemsByPath('~^/topleftmenu/[^/]+/$~'), 'nav navbar-nav');
+            $this->writeTopMenuItems($this->findMenuItemsByPath('~^/toprightmenu/[^/]+/$~'), 'nav navbar-nav ml-auto');
+?>
         </div>
-<?php } else {?>
-        <div style="min-height: 70vh" class="mt-3">
-<?php if ($this->getVar('crumbs')) {?>
-                <ol class="breadcrumb">
-<?php foreach ($this->getVar('crumbs') as $value) {?>
-                    <li class="breadcrumb-item"><?php echo $value?></li>
-<?php }?>
-                </ol>
-<?php }?>
-          <?=$fancyContent?>
-        </div>
-<?php }?>
     </div>
-    
+</nav>
+<?php
+        }
+        
+        private function writeEnd()
+        {
+?>
     <div class="container">
         <hr>
     </div>
@@ -336,9 +312,110 @@ if ($leftMenu) {?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
 </body>
-
 </html>
 <?php
+        }
+        
+        private function writeCrumbs()
+        {
+            if (empty($this->getVar('crumbs'))) {
+                return ;
+            }
+            
+            echo "<ol class=\"breadcrumb\">\n";
+            
+            foreach ($this->getVar('crumbs') as $value) {
+                echo "  <li class=\"breadcrumb-item\">$value</li>\n";
+            }
+            
+            echo "</ol>\n";
+        }
+        
+        private function writeLeftMenu()
+        {
+            echo "<div class=\"list-group mb-3 mb-md-0\">\n";
+            
+            foreach ($this->leftMenu as $path => $menuItem) {
+                if ($menuItem->text() !== '--') {
+                    echo $this->menuLink($path, 'list-group-item list-group-item-action');
+                }
+            }
+            
+            echo "</div>\n";
+        }
+        
+        private function writePageNavs()
+        {
+            if (!$this->navs) {
+                return ;
+            }
+            
+            echo "<ul class=\"nav nav-tabs mb-4\">\n";
+            
+            foreach ($this->navs as $path => $menuItem) {
+              echo "<li class=\"nav-item\">", $this->menuLink($path, 'nav-link'), "</li>\n";
+            }
+            
+            echo "</ul>";
+        }
+        
+        private function writeContent($content)
+        {
+            echo "<div class=\"container\">\n";
+            
+            if ($this->leftMenu) {
+                // Страница с левым меню
+                echo "<div class=\"row\">\n";
+                
+                // Колонка левого меню
+                echo "<div class=\"col-md-4 col-xl-3 offset-xl-0 mt-3\">\n";
+                $this->writeLeftMenu();
+                echo "</div>\n";
+                
+                // Колонка с содержимым
+                echo "<div class=\"col-md-8 col-xl-9 mt-3\">\n";
+                echo "<div style=\"min-height: 70vh\">\n";
+                $this->writeCrumbs();
+                $this->writePageNavs();
+                echo $content, "\n";
+                echo "</div>\n";
+                echo "</div>\n";
+                
+                echo "</div>\n";
+            } else {
+                // Страница без левого меню
+                echo "<div style=\"min-height: 70vh\" class=\"mt-3\">\n";
+                $this->writeCrumbs();
+                $this->writePageNavs();
+                echo $content, "\n";
+                echo "</div>\n";
+            }
+            
+            echo "</div>\n";
+        }
+        
+        public function render($content, $fancy = TRUE) 
+        {
+            $fancyContent = $fancy ? $this->tryToFancyOldCode($content) : $content;
+            
+            foreach ($this->findMenuItemsByPath('~^/[^/]+/[^/]+/$~') as $path => $menuItem) {
+                if ($menuItem->active()) {
+                    $this->leftMenu = $this->findMenuItemsByPath("~^{$path}[^/]+/\$~");
+                    break;
+                }
+            }
+            
+            foreach ($this->leftMenu as $path => $menuItem) {
+                if ($menuItem->active()) {
+                    $this->navs = $this->findMenuItemsByPath("~^{$path}[^/]+/\$~");
+                    break;
+                }
+            }
+            
+            $this->writeBegin();
+            $this->writeNavigation();
+            $this->writeContent($fancyContent);
+            $this->writeEnd();
         }
     }
 }
